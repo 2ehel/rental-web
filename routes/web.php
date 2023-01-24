@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\User\BookingController as UserBooking;
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
@@ -27,6 +29,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/booking', [UserBooking::class,'listing'])->name('booking');
+Route::get('/car', [UserBooking::class,'listing'])->name('car');
+
+// })->group(function () {
+//     Route::get('/car', Car::class)->name('car');
+//     Route::get('/car_listing', CarListing::class)->name('car_listing');
+//     Route::get('/updatecar', ModalUpdateCar::class)->name('updatecar');
+
+
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('/categories', CategoryController::class);
@@ -34,6 +45,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/tables', TableController::class);
     Route::resource('/reservations', ReservationController::class);
     Route::resource('/bookings', BookingController::class);
+    Route::resource('/cars', CarController::class);
 });
 
 require __DIR__ . '/auth.php';

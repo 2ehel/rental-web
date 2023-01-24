@@ -20,16 +20,20 @@ class BookingFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Booking::class;
+    
     public function definition()
     {
+            $year = rand(2022, 2021);
+            $month = rand(1, 12);
+            $day = rand(1, 28);
+            $date = Carbon::create($year,$month ,$day , 0, 0, 0);
         return [
             'booking_no' => rand(1000,9999),
             'customer_name' => $this->faker->name(),
             'customer_id' => rand(1000,9999),
             'car_id' => rand(1000,9999),
             'booking_status' => 'Succes',
-            // 'car_plate' => 'JUS '. rand(1000,9999),
-            // 'model' => Arr::random($model_car),
+            'start_date' => $date->format('Y-m-d H:i'),
             // 'year_register' => rand(1980,2030),
             'total_pay' => rand(5,100)
         ];

@@ -1,205 +1,762 @@
-<x-guest-layout>
-    <!-- Main Hero Content -->
-    <div class="container max-w-lg px-4 py-32 mx-auto text-left bg-center bg-no-repeat bg-cover md:max-w-none md:text-center"
-        style="background-image: url('https://cdn.pixabay.com/photo/2016/11/18/14/39/beans-1834984_960_720.jpg')">
-        <h1
-            class="font-mono text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 md:text-center sm:leading-none lg:text-5xl">
-            <span class="inline md:block">Welcome To Larainfo Restaurant</span>
-        </h1>
-        <div class="mx-auto mt-2 text-green-50 md:text-center lg:text-lg">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta voluptatem ab necessitatibus illo
-            praesentium
-            culpa excepturi quae commodi quaerat,
-        </div>
-        <div class="flex flex-col items-center mt-12 text-center">
-            <span class="relative inline-flex w-full md:w-auto">
-                <a href="{{ route('reservations.step.one') }}" type="button"
-                    class="inline-flex items-center justify-center px-6 py-2 text-base font-bold leading-6 text-white bg-green-600 rounded-full lg:w-full md:w-auto hover:bg-green-500 focus:outline-none">
-                    Make your Reservation
-                </a>
-        </div>
-    </div>
-    <!-- End Main Hero Content -->
-    <section class="px-2 py-32 bg-white md:px-0">
-        <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
-            <div class="flex flex-wrap items-center sm:-mx-3">
-                <div class="w-full md:w-1/2 md:px-3">
-                    <div class="w-full pb-6 space-y-4 sm:max-w-md lg:max-w-lg lg:space-y-4 lg:pr-0 md:pb-0">
-                        <!-- <h1
-              class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl"
-            > -->
-                        <h3 class="text-xl">OUR STORY
-                        </h3>
-                        <h2 class="text-4xl text-green-600">Welcome</h2>
-                        <!-- </h1> -->
-                        <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus nemo incidunt
-                            praesentium, ipsum
-                            culpa minus eveniet, id nesciunt excepturi sit voluptate repudiandae. Explicabo, incidunt
-                            quia.
-                            Repellendus mollitia quaerat est voluptas!
-                        </p>
-                        <div class="relative flex">
-                            <a href="#_"
-                                class="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-green-600 rounded-md sm:mb-0 hover:bg-green-700 sm:w-auto">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-1" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2">
-                    <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
-                        <img src="https://cdn.pixabay.com/photo/2017/08/03/13/30/people-2576336_960_720.jpg" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="py-20 bg-gray-50">
-        <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-            <div class="flex flex-wrap items-center -mx-3">
-                <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
-                    <div class="w-full lg:max-w-md">
-                        <h2 class="mb-4 text-2xl font-bold">About Us</h2>
-                        <h2
-                            class="mb-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                            WHY CHOOSE US?</h2>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-                        <p class="mb-4 font-medium tracking-tight text-gray-400 xl:mb-6">Lorem ipsum dolor sit amet
-                            consectetur
-                            adipisicing elit. Natus hic atque magni minus aliquam, eos quam incidunt nam iusto sunt
-                            voluptates
-                            inventore a veritatis doloremque corrupti. Veritatis est expedita cupiditate!</p>
-                        <ul>
-                            <li class="flex items-center py-2 space-x-4 xl:py-3">
-                                <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
-                                    </path>
-                                </svg>
-                                <span class="font-medium text-gray-500">Faster Processing and Delivery</span>
-                            </li>
-                            <li class="flex items-center py-2 space-x-4 xl:py-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-500" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span class="font-medium text-gray-500">Easy Payments</span>
-                            </li>
-                            <li class="flex items-center py-2 space-x-4 xl:py-3">
-                                <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                                    </path>
-                                </svg>
-                                <span class="font-medium text-gray-500">100% Protection and Security for Your App</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"><img
-                        class="mx-auto sm:max-w-sm lg:max-w-full"
-                        src="https://cdn.pixabay.com/photo/2020/12/31/12/28/cook-5876388_960_720.png"
-                        alt="feature image"></div>
-            </div>
-        </div>
-    </section>
-    <section class="mt-8 bg-white">
-        <div class="mt-4 text-center">
-            <h3 class="text-2xl font-bold">Our Menu</h3>
-            <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                TODAY'S SPECIALITY</h2>
-        </div>
-        <div class="container w-full px-5 py-6 mx-auto">
-            <div class="grid lg:grid-cols-4 gap-y-6">
-                @if ($specials)
-                    
-                @foreach ($specials->menus as $menu)
-                    <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
-                        <img class="w-full h-48" src="{{ Storage::url($menu->image) }}" alt="Image" />
-                        <div class="px-6 py-4">
-                            <h4 class="mb-3 text-xl font-semibold tracking-tight text-green-600 uppercase">
-                                {{ $menu->name }}</h4>
-                            <p class="leading-normal text-gray-700">{{ $menu->description }}.</p>
-                        </div>
-                        <div class="flex items-center justify-between p-4">
-                            <span class="text-xl text-green-600">${{ $menu->price }}</span>
-                        </div>
-                    </div>
-                @endforeach
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sewakan.co</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    {{-- <title>Zay Shop eCommerce HTML CSS Template</title> --}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="app/assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    {{-- Bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="app/assets/css/fontawesome.min.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="app/assets/css/fontawesome.min.css">
+
+    <!-- Styles -->
+    <style>
+        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%
+        }
+
+        body {
+            margin: 0
+        }
+
+        a {
+            background-color: transparent
+        }
+
+        [hidden] {
+            display: none
+        }
+
+        html {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            line-height: 1.5
+        }
+
+        *,
+        :after,
+        :before {
+            box-sizing: border-box;
+            border: 0 solid #e2e8f0
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+        }
+
+        .bg-gray-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+        }
+
+        .border-gray-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(229 231 235 / var(--tw-border-opacity))
+        }
+
+        .border-t {
+            border-top-width: 1px
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .font-semibold {
+            font-weight: 600
+        }
+
+        .h-5 {
+            height: 1.25rem
+        }
+
+        .h-8 {
+            height: 2rem
+        }
+
+        .h-16 {
+            height: 4rem
+        }
+
+        .text-sm {
+            font-size: .875rem
+        }
+
+        .text-lg {
+            font-size: 1.125rem
+        }
+
+        .leading-7 {
+            line-height: 1.75rem
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .ml-1 {
+            margin-left: .25rem
+        }
+
+        .mt-2 {
+            margin-top: .5rem
+        }
+
+        .mr-2 {
+            margin-right: .5rem
+        }
+
+        .ml-2 {
+            margin-left: .5rem
+        }
+
+        .mt-4 {
+            margin-top: 1rem
+        }
+
+        .ml-4 {
+            margin-left: 1rem
+        }
+
+        .mt-8 {
+            margin-top: 2rem
+        }
+
+        .ml-12 {
+            margin-left: 3rem
+        }
+
+        .-mt-px {
+            margin-top: -1px
+        }
+
+        .max-w-6xl {
+            max-width: 72rem
+        }
+
+        .min-h-screen {
+            min-height: 100vh
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem
+        }
+
+        .pt-8 {
+            padding-top: 2rem
+        }
+
+        .fixed {
+            position: fixed
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .top-0 {
+            top: 0
+        }
+
+        .right-0 {
+            right: 0
+        }
+
+        .shadow {
+            --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);
+            --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-gray-200 {
+            --tw-text-opacity: 1;
+            color: rgb(229 231 235 / var(--tw-text-opacity))
+        }
+
+        .text-gray-300 {
+            --tw-text-opacity: 1;
+            color: rgb(209 213 219 / var(--tw-text-opacity))
+        }
+
+        .text-gray-400 {
+            --tw-text-opacity: 1;
+            color: rgb(156 163 175 / var(--tw-text-opacity))
+        }
+
+        .text-gray-500 {
+            --tw-text-opacity: 1;
+            color: rgb(107 114 128 / var(--tw-text-opacity))
+        }
+
+        .text-gray-600 {
+            --tw-text-opacity: 1;
+            color: rgb(75 85 99 / var(--tw-text-opacity))
+        }
+
+        .text-gray-700 {
+            --tw-text-opacity: 1;
+            color: rgb(55 65 81 / var(--tw-text-opacity))
+        }
+
+        .text-gray-900 {
+            --tw-text-opacity: 1;
+            color: rgb(17 24 39 / var(--tw-text-opacity))
+        }
+
+        .underline {
+            text-decoration: underline
+        }
+
+        .antialiased {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        .w-5 {
+            width: 1.25rem
+        }
+
+        .w-8 {
+            width: 2rem
+        }
+
+        .w-auto {
+            width: auto
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr))
+        }
+
+        @media (min-width:640px) {
+            .sm\:rounded-lg {
+                border-radius: .5rem
+            }
+
+            .sm\:block {
+                display: block
+            }
+
+            .sm\:items-center {
+                align-items: center
+            }
+
+            .sm\:justify-start {
+                justify-content: flex-start
+            }
+
+            .sm\:justify-between {
+                justify-content: space-between
+            }
+
+            .sm\:h-20 {
+                height: 5rem
+            }
+
+            .sm\:ml-0 {
+                margin-left: 0
+            }
+
+            .sm\:px-6 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem
+            }
+
+            .sm\:pt-0 {
+                padding-top: 0
+            }
+
+            .sm\:text-left {
+                text-align: left
+            }
+
+            .sm\:text-right {
+                text-align: right
+            }
+        }
+
+        @media (min-width:768px) {
+            .md\:border-t-0 {
+                border-top-width: 0
+            }
+
+            .md\:border-l {
+                border-left-width: 1px
+            }
+
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media (min-width:1024px) {
+            .lg\:px-8 {
+                padding-left: 2rem;
+                padding-right: 2rem
+            }
+        }
+
+        @media (prefers-color-scheme:dark) {
+            .dark\:bg-gray-800 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(31 41 55 / var(--tw-bg-opacity))
+            }
+
+            .dark\:bg-gray-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(17 24 39 / var(--tw-bg-opacity))
+            }
+
+            .dark\:border-gray-700 {
+                --tw-border-opacity: 1;
+                border-color: rgb(55 65 81 / var(--tw-border-opacity))
+            }
+
+            .dark\:text-white {
+                --tw-text-opacity: 1;
+                color: rgb(255 255 255 / var(--tw-text-opacity))
+            }
+
+            .dark\:text-gray-400 {
+                --tw-text-opacity: 1;
+                color: rgb(156 163 175 / var(--tw-text-opacity))
+            }
+
+            .dark\:text-gray-500 {
+                --tw-text-opacity: 1;
+                color: rgb(107 114 128 / var(--tw-text-opacity))
+            }
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
+        @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ url('/dashboard') }}"
+                        class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                 @else
-                <p>No Menu </p>
-                @endif
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}"
+                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
+    </div>
+
+    {{-- <!-- Modal -->
+     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div> --}}
+
+    <!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel carousel-dark slide bg-gray-300" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" style="width:750px;height:350px"
+                                src=" {{ URL::asset('img\car3.jpg') }} ">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b>Ez</b> Rent</h1>
+                                <h3 class="h2">Welcome to Budget-Friendly Car Rental in Malaysia</h3>
+                                <p>
+                                    Discover flexible connectivity by renting a car hourly,
+                                    daily, weekly, or even monthly anywhere in Malaysia, all made easy on the Ez rent car rental app.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid " style="width:750px;height:350px"
+                                src=" {{ URL::asset('img\car.jpg') }} ">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">With Ez Rent</h1>
+                                <h3 class="h2">Malaysia's Largest Online Car Rental Portal.</h3>
+                                <p>
+                                    <strong>Be car-free,</strong> live carefree.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button> --}}
+
+        <button class="carousel-control-prev" data-bs-target="#template-mo-zay-hero-carousel" role="button"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" data-bs-target="#template-mo-zay-hero-carousel" role="button"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- End Banner Hero -->
+
+
+    <!-- Start Categories of The Month -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Top Car of The Month</h1>
+                <p>
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="#"><img src="./img/axia.png"
+                        class="rounded-circle img-fluid border"></a>
+                <h5 class="text-center mt-3 mb-3">Axia</h5>
+                <p class="text-center"><a class="btn btn-success">Details</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="#"><img src="./img/myvi.png"
+                        class="rounded-circle img-fluid border"></a>
+                <h2 class="h5 text-center mt-3 mb-3">Myvi</h2>
+                <p class="text-center"><a class="btn btn-success">Details</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="#"><img src="./img/bezza.png"
+                        class="rounded-circle img-fluid border"></a>
+                <h2 class="h5 text-center mt-3 mb-3">Bezza</h2>
+                <p class="text-center"><a class="btn btn-success">Details</a></p>
             </div>
         </div>
     </section>
-    <section class="pt-4 pb-12 bg-gray-800">
-        <div class="my-16 text-center">
-            <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-                Testimonial </h2>
-            <p class="text-xl text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. soluta sapient</p>
-        </div>
-        <div class="grid gap-2 lg:grid-cols-3">
-            <div class="max-w-md p-4 bg-white rounded-lg shadow-lg">
-                <div class="flex justify-center -mt-16 md:justify-end">
-                    <img class="object-cover w-20 h-20 border-2 border-green-500 rounded-full"
-                        src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80">
-                </div>
-                <div>
-                    <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
-                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores
-                        deserunt
-                        ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis
-                        pariatur
-                        minus consequuntur!</p>
-                </div>
-                <div class="flex justify-end mt-4">
-                    <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
+    <!-- End Categories of The Month -->
+
+
+    <!-- Start Featured Product -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Explore Car Around You</h1>
+                    <p>
+                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident.
+                    </p>
                 </div>
             </div>
-            <div class="max-w-md p-4 bg-white rounded-lg shadow-lg">
-                <div class="flex justify-center -mt-16 md:justify-end">
-                    <img class="object-cover w-20 h-20 border-2 border-green-500 rounded-full"
-                        src="https://cdn.pixabay.com/photo/2018/01/04/21/15/young-3061652__340.jpg">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="./img/civic.png" class="py-3 card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">Civic</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Sedan</a>
+                            <p class="card-text">
+                                Practical Car
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
-                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores
-                        deserunt
-                        ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis
-                        pariatur
-                        minus consequuntur!</p>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="./img/yaris.png" class="py-2 card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">Yaris</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Hatchbacks</a>
+                            <p class="card-text">
+                                Fun to drive
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex justify-end mt-4">
-                    <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
-                </div>
-            </div>
-            <div class="max-w-md p-4 bg-white rounded-lg shadow-lg">
-                <div class="flex justify-center -mt-16 md:justify-end">
-                    <img class="object-cover w-20 h-20 border-2 border-green-500 rounded-full"
-                        src="https://cdn.pixabay.com/photo/2018/01/18/17/48/purchase-3090818__340.jpg">
-                </div>
-                <div>
-                    <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
-                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores
-                        deserunt
-                        ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis
-                        pariatur
-                        minus consequuntur!</p>
-                </div>
-                <div class="flex justify-end mt-4">
-                    <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="./img/kia.png" style="h-180" class=" card-img-top" alt="...">
+                        </a>
+                        <div class="card-body ">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">Carnival</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">MPV</a>
+                            <p class="card-text">
+                                Family car
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-</x-guest-layout>
+    <!-- End Featured Product -->
+
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Ez Rent</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            25, Jalan Keluang, Kampung Raja, 22200 Besut, Terengganu
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-020-0340">014-608 5505</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:info@company.com">shaha@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {{-- <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Home</a></li>
+                        <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
+                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank"
+                                href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
+                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank"
+                                href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div> --}}
+                {{-- <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
+                            placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            Copyright &copy; 2022 Ez Rent
+                            | Designed by nratia
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="app/assets/js/jquery-1.11.0.min.js"></script>
+    <script src="app/assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="app/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="app/assets/js/templatemo.js"></script>
+    <script src="app/assets/js/custom.js"></script>
+    <!-- End Script -->
+
+</body>
+
+</html>

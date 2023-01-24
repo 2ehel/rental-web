@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
 use App\Models\Car;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservationStoreRequest;
 
 
-
-class BookingController extends Controller
+class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public $calc_duration;
-
     public function index()
     {
-        $bookings = Booking::with('car_book')->get();
-        return view('admin.bookings.index', compact('bookings'));
+        $cars = Car::all();
+        return view('admin.cars.index', compact('cars'));
     }
 
     /**
@@ -34,7 +25,7 @@ class BookingController extends Controller
     public function create()
     {
         $cars = Car::all();
-        // dd($this->hour_duration);
+        // dd($cars);
         return view('admin.bookings.create', compact('cars'));
     }
 
@@ -46,13 +37,8 @@ class BookingController extends Controller
      */
     public function store(ReservationStoreRequest $request)
     {
-        $car = Car::findOrFail($request->car_id);
-        if($request->option_duration == 'days'){
-            $this->calc_duration = $request->duration*24;
-        } else {
-            $this->calc_duration = $request->duration;
-        } 
 
+        // dd($request);
         Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
             'customer_name' => $request->customer_name,
@@ -61,7 +47,7 @@ class BookingController extends Controller
             'start_date' => $request->start_date,
             'duration' => $request->duration,
             'booking_status' => $request->booking_status,
-            'total_pay' => $this->calc_duration*$car->charge,
+            'total_pay' => $request->total_pay,
         ]);
 
         return to_route('admin.bookings.index')->with('success', 'Booking created successfully.');
@@ -84,10 +70,10 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit(Booking $bookings)
     {
-        $cars = Car::findOrFail($booking->car_id);
-        return view('admin.bookings.edit', compact('booking','cars'));
+        // $tables = Table::where('status', TableStatus::Avalaiable)->get();
+        return view('admin.reservations.edit', compact('reservation', 'tables'));
     }
 
     /**
@@ -112,7 +98,7 @@ class BookingController extends Controller
         // }
 
         $reservation->update($request->validated());
-        return to_route('admin.bookings.index')->with('success', 'Reservation updated successfully.');
+        return to_route('admin.reservations.index')->with('success', 'Reservation updated successfully.');
     }
 
     /**
@@ -121,10 +107,12 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy(Reservation $reservation)
     {
-        $booking->delete();
+        $reservation->delete();
 
         return to_route('admin.reservations.index')->with('warning', 'Reservation deleted successfully.');
     }
 }
+
+

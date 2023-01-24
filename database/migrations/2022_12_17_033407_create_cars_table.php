@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',100);
             $table->integer('owner_id')->nullable();
+            $table->text('description')->nullable();
             $table->string('brand',10);
             $table->string('model',10)->nullable();
             $table->string('car_plate',10)->unique();

@@ -11,10 +11,12 @@ class Booking extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['booking_no','customer_name','customer_id','car_id','start_date','end_date','booking_status','total_pay','created_by', 'updated_by'];
+    protected $fillable = ['booking_no','customer_name','customer_id','car_id','start_date','duration','booking_status','total_pay','created_by', 'updated_by'];
+    protected $dates = ['start_date'];
 
     public function car_book()
     {
+        // return $this->belongsTo(Car::class);
         return $this->hasOne(Car::class, 'id', 'car_id');
     }
 

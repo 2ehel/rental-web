@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-black border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white  border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,10 +15,20 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('booking') }}" :active="request()->routeIs('booking')">
+                        <div class="px-2"><x-fas-file-circle-plus class="h-5 w-5" />
+                        </div>
+                        {{ __('Booking') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('car') }}" :active="request()->routeIs('car')">
+                        <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
+                        {{ __('Car Detail') }}
+                    </x-nav-link>
+
                     @if (Auth::user()->is_admin)
-                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                            {{ __('Admin') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -64,8 +74,8 @@
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>

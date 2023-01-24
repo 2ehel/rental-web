@@ -29,9 +29,9 @@ class ReservationStoreRequest extends FormRequest
         return [
             'cust_id' => ['required'],
             'customer_name' => ['required'],
-            // 'email' => ['required', 'email'],
+            'option_duration' => ['required'],
+            'duration' => ['required'],
             'start_date' => ['required', 'date', new DateBetween],
-            'end_date' => ['required', 'date', new DateBetween],
             'car_id' => ['required'],
             'booking_status' => ['required'],
             'total_pay' => ['required'],
