@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/booking', [UserBooking::class,'listing'])->name('booking');
+Route::get('/booking', [UserBooking::class,'listing'])->name('bookings.index');
 Route::get('/car', [UserBooking::class,'listing'])->name('car');
 
 // })->group(function () {
