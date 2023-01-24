@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('booking') }}" :active="request()->routeIs('booking')">
+                    <x-nav-link href="{{ route('bookings.index') }}" :active="request()->routeIs('bookings.index')">
                         <div class="px-2"><x-fas-file-circle-plus class="h-5 w-5" />
                         </div>
                         {{ __('Booking') }}

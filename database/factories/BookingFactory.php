@@ -32,7 +32,7 @@ class BookingFactory extends Factory
             'customer_name' => $this->faker->name(),
             'customer_id' => rand(1000,9999),
             'car_id' => rand(1000,9999),
-            'booking_status' => 'Succes',
+            'booking_status' => 'Success',
             'start_date' => $date->format('Y-m-d H:i'),
             // 'year_register' => rand(1980,2030),
             'total_pay' => rand(5,100)

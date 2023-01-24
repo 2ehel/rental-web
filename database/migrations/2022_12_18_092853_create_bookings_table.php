@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('car_id', 12)->comment('Car ID');
             // $table->string('referral', 20)->nullable()->comment('Referral');
             $table->string('start_date', 20)->nullable();
+            $table->string('duration_option', 256)->default("hours");
             $table->integer('duration')->nullable();
             $table->string('booking_status', 10)->nullable();
             $table->integer('total_pay')->comment('Total Rent');
