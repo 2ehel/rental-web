@@ -16,7 +16,7 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-neutral-content">
                 <figure class="px-10 pt-10">
                     <img src=" {{ URL::asset('img\Circle-icons-car.png') }} " style="h-100 w-200">
                 </figure>

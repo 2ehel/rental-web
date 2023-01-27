@@ -87,10 +87,10 @@
             height: auto
         }
 
-        .bg-white {
+        /* .bg-white {
             --tw-bg-opacity: 1;
             background-color: rgb(255 255 255 / var(--tw-bg-opacity))
-        }
+        } */
 
         .bg-gray-100 {
             --tw-bg-opacity: 1;
@@ -419,7 +419,7 @@
     </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased " >
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
