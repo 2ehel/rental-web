@@ -43,20 +43,30 @@
                             @enderror
                         </div>
                         <div class="sm:col-span-6">
-                            <label for="customer_name" class="block text-sm font-medium text-gray-700"> Booking For:
+                            <label for="first_name" class="block text-sm font-medium text-gray-700"> First Name
                             </label>
                             <div class="mt-1">
-                                <input type="text" id="customer_name" readonly name="customer_name"
-                                    value="{{Auth::user()->name}}"
-                                    class="input input-sm input w-full max-w-xs rounded-md py-2 px-3 text-base leading-normal sm:text-sm sm:leading-5" />
+                                <input type="text" id="first_name" name="first_name"
+                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                             </div>
-                            @error('customer_name')
-                            <div class="text-sm text-red-400">{{ $message }}</div>
+                            @error('first_name')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="sm:col-span-6">
+                            <label for="last_name" class="block text-sm font-medium text-gray-700"> Last Name
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" id="last_name" name="last_name"
+                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                            @error('last_name')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="sm:col-span-6 py-4">
-                            <label for="start_date" class="block text-sm font-medium text-gray-700"> Start Date
+                            <label for="start_date" class="block text-sm font-medium text-gray-700"> Booking Date
                             </label>
                             <div class="mt-1">
                                 <input type="datetime-local" id="start_date" name="start_date"

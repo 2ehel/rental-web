@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div class="container w-full px-5 py-6 mx-auto">
         <div class="flex items-center min-h-screen bg-gray-50">
             <div class="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
@@ -17,11 +17,11 @@
                                     Step 2</div>
                             </div>
 
-                            <form method="POST" action="{{ route('reservations.store.step.two') }}">
+                            <form method="POST" action="{{ route('bookings.store.step.two') }}">
                                 @csrf
                                 <div class="sm:col-span-6 pt-5">
                                     <label for="status" class="block text-sm font-medium text-gray-700">Car Selected</label>
-                                    {{-- <div class="mt-1">
+                                    <div class="mt-1">
                                         <select id="car_id" name="car_id"
                                             class="form-multiselect block w-full mt-1 select select-bordered select-sm w-full max-w-xs">
                                             <option> Select Car
@@ -32,7 +32,7 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                    </div> --}}
+                                    </div>
                                     @error('car_id')
                                     <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
@@ -53,4 +53,4 @@
         </div>
 
     </div>
-</x-guest-layout>
+</x-app-layout>
