@@ -31,6 +31,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/booking', [UserBooking::class,'listing'])->name('bookings.index');
 Route::get('/car', [UserBooking::class,'listing'])->name('car');
+Route::get('/booking/step-one', [UserBooking::class, 'stepOne'])->name('bookings.step.one');
+Route::post('/booking/step-one', [UserBooking::class, 'storeStepOne'])->name('bookings.store.step.one');
+Route::get('/booking/step-two', [UserBooking::class, 'stepTwo'])->name('bookings.step.two');
+Route::post('/booking/step-two', [UserBooking::class, 'storeStepTwo'])->name('bookings.store.step.two');
 
 // })->group(function () {
 //     Route::get('/car', Car::class)->name('car');
