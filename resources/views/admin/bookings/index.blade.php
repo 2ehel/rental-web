@@ -27,28 +27,41 @@
                                         <th class="text-xs">Total Pay</th>
                                         <th></th>
                                         <th></th>
-                                      </tr>
+                                    </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    
+
                                     @forelse ($bookings as $bs)
                                     <tr>
                                         <td class="font-bold">
-                                          <div class="text-sm"> {{ $bs->customer_name }}</div>
+                                            <div class="text-sm"> {{ $bs->customer_name }}</div>
                                         </td>
                                         <td class="text-sm">{{ $bs->customer_id }}</td>
-                                        <td class="text-sm">{{ $bs->car_book->brand ?? $bs->car_id }}</td>
-                                        
+                                        <td class="text-sm">
+                                            @if($bs->car_book)
+                                            {{ $bs->car_book->brand." ".$bs->car_book->model}} <br>
+                                            {{"(".$bs->car_book->car_plate.")"}}
+                                            @endif
+                                        </td>
                                         <td class="text-sm">{{ $bs->start_date->format('d.m.Y H:i') ?? null }}</td>
-                                        <td class="text-sm"> {{$bs->duration}} </td>
-                                        <td class="text-sm"> {{$bs->booking_status}} </td>
+                                        <td class="text-sm"> {{$bs->duration." ".$bs->duration_option}} </td>
+                                        <td class="text-sm ">
+                                            @if ($bs->booking_status == 'Pending')
+                                            <span class="badge badge-secondary"> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Negotation')
+                                            <span class="badge "> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Cancel')
+                                            <span class="badge error"> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Success')
+                                            <span class="badge badge-success"> {{$bs->booking_status}} </span>
+                                            @endif
+                                        </td>
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
                                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                             <div class="flex space-x-2">
                                                 <a href="{{ route('admin.bookings.edit', $bs->id) }}"
                                                     class="btn btn-secondary btn-sm">Edit</a>
-                                                <form
-                                                    class="text btn btn-warning btn-sm text-sm text-white"
+                                                <form class="text btn btn-warning btn-sm text-sm text-white"
                                                     method="POST"
                                                     action="{{ route('admin.bookings.destroy', $bs->id) }}"
                                                     onsubmit="return confirm('Are you sure?');">
@@ -58,8 +71,8 @@
                                                 </form>
                                             </div>
                                         </td>
-                                        
-                                      </tr>
+
+                                    </tr>
                                     @empty
                                     <tr>
                                         <td> No Data bro! </td>

@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('car_plate',10)->unique();
             // $table->string('ic_number', 12)->unique();
             $table->integer('year_register')->nullable();
-            $table->integer('charge')->nullable();
+            $table->integer('charge_per_hour')->nullable();
+            $table->integer('charge_per_day')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

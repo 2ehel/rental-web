@@ -39,16 +39,25 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if($request->category == 'Renter'){
+            $admin_status = 0;
+        } else {
+            $admin_status = 1;
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_no' => $request->phone_no,
+            'category' => $request->category,
+            'is_admin' => $admin_status,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::LOGIN);
     }
 }

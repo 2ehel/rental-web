@@ -32,32 +32,35 @@
                                 <tbody class="text-center">
 
                                     @forelse ($bookings as $bs)
-                                        <tr>
-                                            <td class="font-bold">
-                                                <div class="text-sm"> {{ $bs->customer_name }}</div>
-                                            </td>
-                                            <td class="text-sm">{{ $bs->customer_id }}</td>
-                                            <td class="text-sm">
-                                                {{ $bs->car_book->brand . ' ' . $bs->car_book->model ?? $bs->car_id }}
-                                                <br> {{ '(' . $bs->car_book->car_plate . ')' }}</td>
-                                            <td class="text-sm">{{ $bs->start_date->format(' H:i d/m/Y') ?? null }}</td>
-                                            <td class="text-sm"> {{ $bs->duration }} </td>
-
+                                    <tr>
+                                        <td class="font-bold">
+                                            <div class="text-sm"> {{ $bs->customer_name }}</div>
+                                        </td>
+                                        <td class="text-sm">{{ $bs->customer_id }}</td>
+                                        <td class="text-sm">{{ $bs->car_book->brand." ".$bs->car_book->model ??
+                                            $bs->car_id }} <br> {{"(".$bs->car_book->car_plate.")"}}</td>
+                                        <td class="text-sm">{{ $bs->start_date->format(' H:i d/m/Y') ?? null }}</td>
+                                        <td class="text-sm"> {{$bs->duration." ".$bs->duration_option}} </td>
+                                        <td class="text-sm ">
                                             @if ($bs->booking_status == 'Pending')
-                                                <td class="text-sm ">
-                                                    <span class="badge badge-secondary"> {{ $bs->booking_status }}
-                                                    </span>
-                                                </td>
+                                            <span class="badge badge-secondary"> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Negotation')
+                                            <span class="badge "> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Cancel')
+                                            <span class="badge error"> {{$bs->booking_status}} </span>
+                                            @elseif ($bs->booking_status == 'Success')
+                                            <span class="badge badge-success"> {{$bs->booking_status}} </span>
                                             @endif
+                                        </td>
 
-                                            <td> {{ 'RM ' . $bs->total_pay }} </td>
-                                            <td class="py-4 px-6 text-sm text-right whitespace-nowrap">
-                                                <div class="flex space-x-2">
-                                                    <a href="{{ route('admin.bookings.edit', $bs->id) }}"
-                                                        class="btn btn-primary btn-sm">Update Status</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <td> {{ 'RM '.$bs->total_pay}} </td>
+                                        <td class="py-4 px-6 text-sm text-right whitespace-nowrap">
+                                            <div class="flex space-x-2">
+                                                <a href="{{ route('admin.bookings.edit', $bs->id) }}"
+                                                    class="btn btn-primary btn-sm">Update Status</a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @empty
                                         <tr>
                                             <td> No Data bro! </td>

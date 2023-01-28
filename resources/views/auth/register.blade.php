@@ -53,14 +53,14 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="user_type" value="{{ __('User Category') }}" />
-                    <x-input type="radio" name="user_type" value="Rentee" label="Rentee" />
+                    <x-label for="category" value="{{ __('User Category') }}" />
+                    <x-input type="radio" id="category"  name="category" value="Rentee" label="Rentee" />
                     <span class="label-text px-2">Rentee</span>
 
-                    <x-input type="radio" name="user_type" value="Renter" label="Renter" />
+                    <x-input type="radio" name="category" value="Renter" label="Renter" />
                     <span class="label-text px-2">Renter</span>
 
-                    <x-input type="radio" name="user_type" value="Admin" label="Admin" />
+                    <x-input type="radio" name="category" value="Admin" label="Admin" />
                     <span class="label-text px-2">Admin</span>
 
                 </div>

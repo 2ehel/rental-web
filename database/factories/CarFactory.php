@@ -36,7 +36,8 @@ class CarFactory extends Factory
             'car_plate' => 'JUS '. rand(1000,9999),
             'model' => Arr::random($model_car),
             'year_register' => rand(1980,2030),
-            'charge' => rand(5,20)
+            'charge_per_hour' => rand(5,8),
+            'charge_per_day' => rand(60,100)
         ];
     }
 }

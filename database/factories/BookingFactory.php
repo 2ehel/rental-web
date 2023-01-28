@@ -34,6 +34,7 @@ class BookingFactory extends Factory
             'car_id' => rand(1000,9999),
             'booking_status' => 'Success',
             'start_date' => $date->format('Y-m-d H:i'),
+            'duration' => rand(1,10),
             // 'year_register' => rand(1980,2030),
             'total_pay' => rand(5,100)
         ];

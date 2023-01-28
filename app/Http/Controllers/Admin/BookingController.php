@@ -87,33 +87,35 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        $cars = Car::findOrFail($booking->car_id);
+        $cars = Car::find($booking->car_id) || NULL;
         return view('admin.bookings.edit', compact('booking','cars'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ReservationStoreRequest $request, Booking $booking)
+    public function update(Request $request, Booking $booking)
     {
-        // $car = Car::findOrFail($request->car_id);
-        // if ($request->car > $table->guest_number) {
-        //     return back()->with('warning', 'Please choose the table base on guests.');
-        // }
-        $request_date = Carbon::parse($request->start_date);
-        $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
-        // foreach ($reservations as $res) {
-        //     if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
-        //         return back()->with('warning', 'This table is reserved for this date.');
-        //     }
-        // }
 
-        $reservation->update($request->validated());
-        return to_route('admin.bookings.index')->with('success', 'Reservation updated successfully.');
+        $car = Car::findOrFail($request->car_id);
+        
+        // dd($car);
+
+        if($request->duration_option == 'days'){
+            $this->calc_duration = $request->duration*$car->charge_per_day;
+        } elseif ($request->duration_option == 'hours') {
+            $this->calc_duration = $request->duration*$car->charge_per_hour ;
+        } 
+
+        $booking->update([
+            'customer_name' => $request->customer_name,
+            'start_date' => $request->start_date,
+            'duration' => $request->duration,
+            'booking_status' => $request->booking_status,
+            'duration_option' => $request->duration_option,
+            'total_pay' => $this->calc_duration,
+        ]);
+
+
+        // $booking->update($request->validated());
+        return to_route('admin.bookings.index')->with('success', 'Booking updated successfully.');
     }
 
     /**
@@ -126,6 +128,6 @@ class BookingController extends Controller
     {
         $booking->delete();
 
-        return to_route('admin.booking.index')->with('warning', 'Booking deleted successfully.');
+        return to_route('admin.bookings.index')->with('warning', 'Booking deleted successfully.');
     }
 }
