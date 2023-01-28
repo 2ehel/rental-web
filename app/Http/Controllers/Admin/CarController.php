@@ -7,13 +7,18 @@ use App\Models\Car;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservationStoreRequest;
-
+use Auth;
 
 class CarController extends Controller
 {
     public function index()
     {
+        $userid = Auth::user()->id;
+        if (Auth::user()->category == 'Renter'){
+        $cars = Car::where('owner_id', $userid)->get();
+        } else {
         $cars = Car::all();
+        }
         return view('admin.cars.index', compact('cars'));
     }
 

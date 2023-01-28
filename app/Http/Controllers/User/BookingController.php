@@ -79,9 +79,9 @@ class BookingController extends Controller
         // dd($car);
 
         if($bookings->duration_option == 'days'){
-            $this->calc_duration = $bookings->duration*24;
+            $this->calc_duration = $bookings->duration*$car->charge_per_day;
         } else {
-            $this->calc_duration = $bookings->duration;
+            $this->calc_duration = $bookings->duration*$car->charge_per_hour;
         } 
         $bookings = Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
@@ -91,7 +91,7 @@ class BookingController extends Controller
             'duration' => $bookings->duration,
             // 'booking_status' => $bookings->booking_status,
             'duration_option' => $bookings->duration_option,
-            'total_pay' => $this->calc_duration*$car->charge,
+            'total_pay' => $this->calc_duration,
             'car_id' => $car_no,
             'booking_status' => 'Pending',
         ]); 
