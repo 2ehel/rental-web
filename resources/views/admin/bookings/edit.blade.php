@@ -86,7 +86,7 @@
                             </div>
                             <select id="duration" name="duration"
                                 class="form-multiselect block w-full mt-1 select select-bordered select-sm w-full max-w-xs">
-                                <option value=""> {{$booking->duration}} </option>
+                                <option value="{{$booking->duration}} "> {{$booking->duration}} </option>
                                 @foreach ($hour_duration as $hour)
                                 <option value="{{ $hour }}">{{ $hour }} </option>
                                 @endforeach
