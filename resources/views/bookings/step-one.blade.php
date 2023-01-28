@@ -23,13 +23,13 @@
 
                             <form method="POST" action="{{ route('bookings.store.step.one') }}">
                                 @csrf
-
                                 <div class="sm:col-span-6">
                                     <div class="mt-1">
-                                        <input type="hidden" id="cust_id" name="cust_id" value="{{Auth::user()->id}}"
+                                        <input type="hidden" id="customer_id" name="customer_id"
+                                            value="{{Auth::user()->id}}"
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
-                                    @error('cust_id')
+                                    @error('customer_id')
                                     <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -57,7 +57,6 @@
                                     </label>
                                     <div class="mt-1">
                                         <input type="text" id="first_name" name="first_name"
-                                            value="{{ $reservation->first_name ?? '' }}"
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
                                     @error('first_name')
@@ -69,7 +68,6 @@
                                     </label>
                                     <div class="mt-1">
                                         <input type="text" id="last_name" name="last_name"
-                                            value="{{ $reservation->last_name ?? '' }}"
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
                                     @error('last_name')
@@ -99,14 +97,14 @@
                                         <div class="form-control">
                                             <label class="label cursor-pointer">
                                                 <span class="label-text">Hours</span>
-                                                <input type="radio" id="option_duration" name="option_duration"
+                                                <input type="radio" id="duration_option" name="duration_option"
                                                     value="hours" class="radio checked:bg-red-500" checked />
                                             </label>
                                         </div>
                                         <div class="form-control">
                                             <label class="label cursor-pointer">
                                                 <span class="label-text">Days</span>
-                                                <input type="radio" id="option_duration" name="option_duration"
+                                                <input type="radio" id="duration_option" name="duration_option"
                                                     value="days" class="radio checked:bg-blue-500" checked />
                                             </label>
                                         </div>
@@ -135,4 +133,11 @@
         </div>
 
     </div>
+    <script language="JavaScript" type="text/JavaScript">
+        <!--
+        function combine(form) {
+        form.customer_name.value = form.first_name.value + form.last_name.value;
+        }
+        //-->
+    </script>
 </x-app-layout>

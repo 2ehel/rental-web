@@ -87,13 +87,13 @@
                                 <div class="form-control">
                                     <label class="label cursor-pointer">
                                         <span class="label-text">Hours</span>
-                                        <input type="radio" id="option_duration" name="option_duration" value="hours" class="radio checked:bg-red-500" checked />
+                                        <input type="radio" id="duration_option" name="duration_option" value="hours" class="radio checked:bg-red-500" checked />
                                     </label>
                                 </div>
                                 <div class="form-control">
                                     <label class="label cursor-pointer">
                                         <span class="label-text">Days</span>
-                                        <input type="radio" id="option_duration" name="option_duration" value="days" class="radio checked:bg-blue-500" checked />
+                                        <input type="radio" id="duration_option" name="duration_option" value="days" class="radio checked:bg-blue-500" checked />
                                     </label>
                                 </div>
                             </div>

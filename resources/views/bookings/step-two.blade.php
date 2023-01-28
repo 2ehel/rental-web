@@ -1,4 +1,9 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Make Booking') }}
+        </h2>
+    </x-slot>
     <div class="container w-full px-5 py-6 mx-auto">
         <div class="flex items-center min-h-screen bg-gray-50">
             <div class="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
@@ -39,11 +44,11 @@
                                 </div>
 
                                 <div class="mt-6 p-4 flex justify-between">
-                                    <a href="{{ route('reservations.step.one') }}"
+                                    <a href="{{ route('bookings.step.one') }}"
                                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Previous</a>
                                     <button type="submit"
                                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Make
-                                        Reservation</button>
+                                        Booking</button>
                                 </div>
                             </form>
                         </div>

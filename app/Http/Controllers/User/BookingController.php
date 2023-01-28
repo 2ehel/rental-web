@@ -27,8 +27,7 @@ class BookingController extends Controller
     public function stepOne(Request $request)
     {
         $booking = $request->session()->get('booking');
-        // $min_date = Carbon::today();
-        // $max_date = Carbon::now()->addWeek();
+
         return view('bookings.step-one', compact('booking'));
     }
 
@@ -37,33 +36,34 @@ class BookingController extends Controller
         $validated = $request->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'cust_id' => ['required'],
-            'option_duration' => ['required'],
+            'customer_id' => ['required'],
+            'duration_option' => ['required'],
             'duration' => ['required'],
             'start_date' => ['required', 'date', new DateBetween],
             'booking_status' => ['required'],
             'total_pay' => ['required'],
         ]);
-
-        if (empty($request->session()->get('bookings'))) {
             $bookings = new Booking();
-            $bookings->fill($validated);
-            $request->session()->put('bookings', $bookings);
-        } else {
-            $bookings = $request->session()->get('bookings');
-            $bookings->fill($validated);
-            $request->session()->put('bookings', $bookings);
-        }
-        // dd('Kamben');
+            $bookings->fill([
+            'customer_name' => $validated['first_name']." ".$validated['last_name'],
+            'customer_id' => $validated['customer_id'],
+            'start_date' => $validated['start_date'],
+            'duration_option' => $validated['duration_option'],
+            'duration' => $validated['duration'],
+            ]);
+            // dd($bookings);
 
-        return redirect()->route('bookings.step.two');
+            $request->session()->put('bookings', $bookings);
+        
+
+        return to_route('bookings.step.two');
     }
 
     public function stepTwo(Request $request)
     {
         $bookings = $request->session()->get('bookings');
 
-        $cars = Car::findOrFail($request->car_id);
+        $cars = Car::all();
 
         return view('bookings.step-two', compact('bookings', 'cars'));
     }
@@ -74,12 +74,33 @@ class BookingController extends Controller
             'car_id' => ['required']
         ]);
         $bookings = $request->session()->get('bookings');
-        $bookings->fill($validated);
+        $car_no = $validated['car_id'];
+        $car = Car::findOrFail($car_no);
+        // dd($car);
+
+        if($bookings->duration_option == 'days'){
+            $this->calc_duration = $bookings->duration*24;
+        } else {
+            $this->calc_duration = $bookings->duration;
+        } 
+        $bookings = Booking::create([
+            'booking_no' => 'BC'.rand(1000,9999),
+            'customer_name' => $bookings->customer_name,
+            'customer_id' => $bookings->customer_id,
+            'start_date' => $bookings->start_date,
+            'duration' => $bookings->duration,
+            // 'booking_status' => $bookings->booking_status,
+            'duration_option' => $bookings->duration_option,
+            'total_pay' => $this->calc_duration*$car->charge,
+            'car_id' => $car_no,
+            'booking_status' => 'Pending',
+        ]); 
         $bookings->save();
         $request->session()->forget('bookings');
 
         return to_route('thankyou');
     }
+
 }
 
     

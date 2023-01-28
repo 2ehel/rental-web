@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
-                <a href="{{ route('reservations.step.one') }}"
+                <a href="{{ route('bookings.step.one') }}"
                     class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">New Booking</a>
             </div>
             <div class="flex flex-col">
@@ -26,40 +26,37 @@
                                         <th>Booking Status </th>
                                         <th class="text-xs">Total Pay</th>
                                         <th></th>
-                                        <th></th>
-                                      </tr>
+                                        {{-- <th></th> --}}
+                                    </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    
+
                                     @forelse ($bookings as $bs)
                                     <tr>
                                         <td class="font-bold">
-                                          <div class="text-sm"> {{ $bs->customer_name }}</div>
+                                            <div class="text-sm"> {{ $bs->customer_name }}</div>
                                         </td>
                                         <td class="text-sm">{{ $bs->customer_id }}</td>
-                                        <td class="text-sm">{{ $bs->car_book->brand ?? $bs->car_id }}</td>
-                                        
-                                        <td class="text-sm">{{ $bs->start_date->format('d.m.Y H:i') ?? null }}</td>
+                                        <td class="text-sm">{{ $bs->car_book->brand." ".$bs->car_book->model ??
+                                            $bs->car_id }} <br> {{"(".$bs->car_book->car_plate.")"}}</td>
+                                        <td class="text-sm">{{ $bs->start_date->format(' H:i d/m/Y') ?? null }}</td>
                                         <td class="text-sm"> {{$bs->duration}} </td>
-                                        <td class="text-sm"> {{$bs->booking_status}} </td>
+
+                                        @if ($bs->booking_status == 'Pending')
+                                        <td class="text-sm ">
+                                            <span class="badge badge-secondary"> {{$bs->booking_status}} </span>
+                                        </td>
+                                        @endif
+
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
-                                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        <td class="py-4 px-6 text-sm text-right whitespace-nowrap">
                                             <div class="flex space-x-2">
                                                 <a href="{{ route('admin.bookings.edit', $bs->id) }}"
-                                                    class="btn btn-secondary btn-sm">Edit</a>
-                                                <form
-                                                    class="text btn btn-warning btn-sm text-sm text-white"
-                                                    method="POST"
-                                                    action="{{ route('admin.bookings.destroy', $bs->id) }}"
-                                                    onsubmit="return confirm('Are you sure?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit">DELETE</button>
-                                                </form>
+                                                    class="btn btn-primary btn-sm">Update Status</a>
+                                                    <a href="#my-modal-2" class="btn">open modal</a>
                                             </div>
                                         </td>
-                                        
-                                      </tr>
+                                    </tr>
                                     @empty
                                     <tr>
                                         <td> No Data bro! </td>
@@ -67,6 +64,21 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            
+
+                            <!-- Put this part before </body> tag -->
+                            <div class="modal" id="my-modal-2">
+                              <div class="modal-box">
+                                <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+                                <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                                <div class="modal-action">
+                                    <form method="POST" action="{{ route('bookings.update') }}">
+
+
+                                 <a href="#" class="btn">Yay!</a>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
