@@ -55,12 +55,13 @@ class BookingController extends Controller
 
         Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
-            'customer_name' => $request->customer_name,
+            'customer_name' => $request->first_name." ".$request->last_name,
             'customer_id' => $request->cust_id,
             'car_id' => $request->car_id,
             'start_date' => $request->start_date,
             'duration' => $request->duration,
             'booking_status' => $request->booking_status,
+            'duration_option' => $request->duration_option,
             'total_pay' => $this->calc_duration*$car->charge,
         ]);
 
