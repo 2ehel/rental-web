@@ -33,6 +33,7 @@ class ReservationStoreRequest extends FormRequest
             'duration_option' => ['required'],
             'duration' => ['required'],
             'start_date' => ['required', 'date', new DateBetween],
+            // 'car_owner_id' => ['required'],
             'car_id' => ['required'],
             'booking_status' => ['required'],
             'total_pay' => ['required'],

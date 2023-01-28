@@ -18,6 +18,7 @@ return new class extends Migration
             // $table->boolean('term_agreement')->nullable()->default(false);
             $table->string('booking_no', 20)->nullable()->comment('e.g RN0001');
             $table->string('customer_name', 256);
+            $table->string('car_owner_id', 12)->nullable()->comment('Car Owner ID');;
             $table->string('customer_id', 12)->comment('National ID');
             $table->string('car_id', 12)->comment('Car ID');
             // $table->string('referral', 20)->nullable()->comment('Referral');
