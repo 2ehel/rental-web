@@ -26,7 +26,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-primary">
         @include('layouts.navigation')
         {{-- <div class="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
             <div x-data="{ open: false }"
@@ -165,7 +165,7 @@
         </div> --}}
 
         <!-- Page Heading -->
-        <header class="bg-white shadow">
+        <header class="bg-neutral-content">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>

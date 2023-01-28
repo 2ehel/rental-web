@@ -52,7 +52,7 @@ class BookingController extends Controller
         } else {
             $this->calc_duration = $request->duration;
         } 
-
+// dd($request);
         Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
             'customer_name' => $request->first_name." ".$request->last_name,
@@ -126,6 +126,6 @@ class BookingController extends Controller
     {
         $booking->delete();
 
-        return to_route('admin.reservations.index')->with('warning', 'Reservation deleted successfully.');
+        return to_route('admin.booking.index')->with('warning', 'Booking deleted successfully.');
     }
 }
