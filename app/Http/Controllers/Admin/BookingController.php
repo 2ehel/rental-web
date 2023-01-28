@@ -54,10 +54,10 @@ class BookingController extends Controller
     public function store(ReservationStoreRequest $request)
     {
         $car = Car::findOrFail($request->car_id);
-        if($request->option_duration == 'days'){
-            $this->calc_duration = $request->duration*24;
+        if($request->duration_option == 'days'){
+            $this->calc_duration = $request->duration*$car->charge_per_day;
         } else {
-            $this->calc_duration = $request->duration;
+            $this->calc_duration = $request->duration*$car->charge_per_hour;
         } 
 // dd($request);
         Booking::create([
@@ -70,7 +70,7 @@ class BookingController extends Controller
             'duration' => $request->duration,
             'booking_status' => $request->booking_status,
             'duration_option' => $request->duration_option,
-            'total_pay' => $this->calc_duration*$car->charge,
+            'total_pay' => $this->calc_duration,
         ]);
 
         return to_route('admin.bookings.index')->with('success', 'Booking created successfully.');
