@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
 use Carbon\Carbon;
+use DB;
 
 class BookingController extends Controller
 {
@@ -20,7 +21,7 @@ class BookingController extends Controller
     {
         $user_id = Auth::user()->id;
         $bookings =  Booking::where('customer_id', $user_id)->get();
-
+        // dd($bookings);
         return view('bookings.index', compact(['bookings']));
     }
 
@@ -50,8 +51,8 @@ class BookingController extends Controller
             'start_date' => $validated['start_date'],
             'duration_option' => $validated['duration_option'],
             'duration' => $validated['duration'],
+            'booking_status' => $validated['booking_status'],
             ]);
-            // dd($bookings);
 
             $request->session()->put('bookings', $bookings);
         
@@ -99,6 +100,14 @@ class BookingController extends Controller
         $request->session()->forget('bookings');
 
         return to_route('thankyou');
+    }
+    public function updateStatus(Request $request, Booking $booking)
+    {   
+        DB::table('bookings')->where('id', $request->id )->update([
+            'booking_status' => $request->booking_status,
+        ]);
+        // dd($booking);
+        return to_route('bookings.index');
     }
 
 }

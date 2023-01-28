@@ -138,4 +138,6 @@ class BookingController extends Controller
 
         return to_route('admin.bookings.index')->with('warning', 'Booking deleted successfully.');
     }
+
+    
 }
