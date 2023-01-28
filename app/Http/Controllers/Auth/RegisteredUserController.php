@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if($request->category == 'Renter'){
+        if($request->category == 'Rentee'){
             $admin_status = 0;
         } else {
             $admin_status = 1;
