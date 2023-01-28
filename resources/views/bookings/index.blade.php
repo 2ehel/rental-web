@@ -62,13 +62,13 @@
                                         </td>
                                     </tr>
                                     @empty
-                                    <tr>
-                                        <td> No Data bro! </td>
-                                    </tr>
+                                        <tr>
+                                            <td> No Data bro! </td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                             </table>
-                            
+
 
                             <!-- Put this part before </body> tag -->
                             {{-- <div class="modal" id="my-modal-2">
