@@ -95,6 +95,8 @@ class BookingController extends Controller
             'total_pay' => $this->calc_duration,
             'car_id' => $car_no,
             'booking_status' => 'Pending',
+            'car_owner_id' => $car->owner_id,
+
         ]); 
         $bookings->save();
         $request->session()->forget('bookings');
