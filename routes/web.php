@@ -52,6 +52,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/tables', TableController::class);
     Route::resource('/reservations', ReservationController::class);
     Route::resource('/bookings', BookingController::class);
+    Route::put('/bookings/update-status', [BookingController::class, 'status'])->name('admin.bookings.updateStatus');
     Route::resource('/cars', CarController::class);
 });
 

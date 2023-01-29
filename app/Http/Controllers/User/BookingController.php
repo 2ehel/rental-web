@@ -108,8 +108,15 @@ class BookingController extends Controller
         DB::table('bookings')->where('id', $request->id )->update([
             'booking_status' => $request->booking_status,
         ]);
-        // dd($booking);
-        return to_route('bookings.index');
+        // dd(Auth::user()->category);
+        if(Auth::user()->category == 'Rentee')
+        {        return to_route('bookings.index');
+
+        } else 
+        {        return to_route('admin.bookings.index');
+
+
+        }
     }
 
 }
