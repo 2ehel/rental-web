@@ -30,11 +30,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/booking', [UserBooking::class,'listing'])->name('bookings.index');
+// Route::resource('/bookings', UserBooking::class);
 Route::get('/car', [UserBooking::class,'listing'])->name('car');
 Route::get('/booking/step-one', [UserBooking::class, 'stepOne'])->name('bookings.step.one');
 Route::post('/booking/step-one', [UserBooking::class, 'storeStepOne'])->name('bookings.store.step.one');
 Route::get('/booking/step-two', [UserBooking::class, 'stepTwo'])->name('bookings.step.two');
 Route::post('/booking/step-two', [UserBooking::class, 'storeStepTwo'])->name('bookings.store.step.two');
+Route::put('/booking/update-status', [UserBooking::class, 'updateStatus'])->name('bookings.updateStatus');
+
 
 // })->group(function () {
 //     Route::get('/car', Car::class)->name('car');
