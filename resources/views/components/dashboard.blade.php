@@ -1,4 +1,4 @@
-<div class ="container">
+{{-- <div class ="container">
 <div class="carousel w-full">
     <div id="item1" class="carousel-item w-full">
       <img src="\img\car.jpg" class="w-full" />
@@ -11,7 +11,7 @@
     <a href="#item1" class="btn btn-xs">1</a> 
     <a href="#item2" class="btn btn-xs">2</a> 
   </div>
-</div>
+</div> --}}
 <div class="p-6 sm:px-20 bg-secondary-focus border-b border-gray-200">
     <div class="p-4 flex justify-around">
         <div class="card card-compact w-72 h-96 bg-base-100 shadow-lg">
