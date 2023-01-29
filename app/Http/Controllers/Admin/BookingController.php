@@ -145,7 +145,7 @@ class BookingController extends Controller
             'booking_status' => $request->booking_status,
         ]);
         // dd($booking);
-        return to_route('bookings.index');
+        return to_route('admin.bookings.index');
     }
 
     

@@ -56,6 +56,8 @@
                                             <span class="badge error"> {{$bs->booking_status}} </span>
                                             @elseif ($bs->booking_status == 'Success')
                                             <span class="badge badge-success"> {{$bs->booking_status}} </span>
+                                            @else 
+                                            <span class="badge badge-warning"> {{$bs->booking_status}} </span>
                                             @endif
                                         </td>
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
@@ -100,7 +102,7 @@
                                                                 <option value="Pickup Car"> Pickup Car</option>
                                                                 <option value="Cancel"> Cancel</option>
                                                                 <option value="Payment Success">Payment Success</option>
-                                                                <option value="Payment Success">Payment Success</option>
+                                                                {{-- <option value="Payment Success">Payment Success</option> --}}
                                                                 {{-- <option value="Success"> Success </option> --}}
                                                             </select>
                                                         </div>
