@@ -24,6 +24,10 @@
                         <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
                         {{ __('Car Detail') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('bookings.step.one')}}" :active="request()->routeIs('bookings.step.one')">
+                        <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
+                        {{ __('Make Booking') }}
+                    </x-nav-link>
 
                     @if (Auth::user()->is_admin)
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
@@ -38,7 +42,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            class="flex items-center text-sm font-medium text-secondary hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-base-100 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
