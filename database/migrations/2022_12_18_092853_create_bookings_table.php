@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('start_date', 20)->nullable();
             $table->string('duration_option', 256)->default("hours");
             $table->integer('duration')->nullable();
-            $table->string('booking_status', 10)->nullable();
+            $table->string('booking_status', 256)->nullable();
             $table->integer('total_pay')->comment('Total Rent');
             $table->integer('created_by')->comment('Created by')->nullable();
             $table->integer('updated_by')->nullable()->comment('Updated by')->nullable();
