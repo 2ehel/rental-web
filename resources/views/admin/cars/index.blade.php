@@ -59,7 +59,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td> No Data bro! </td>
+                                        <td> Sorry There Are No Data For Now  </td>
                                     </tr>
                                     @endforelse
                                 </tbody>
