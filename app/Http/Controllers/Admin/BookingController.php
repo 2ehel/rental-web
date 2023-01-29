@@ -139,5 +139,14 @@ class BookingController extends Controller
         return to_route('admin.bookings.index')->with('warning', 'Booking deleted successfully.');
     }
 
+    public function updateStatus(Request $request, Booking $booking)
+    {   
+        DB::table('bookings')->where('id', $request->id )->update([
+            'booking_status' => $request->booking_status,
+        ]);
+        // dd($booking);
+        return to_route('bookings.index');
+    }
+
     
 }

@@ -61,7 +61,7 @@
                                             <input type="checkbox" id="my-modal-6" class="modal-toggle" />
                                             <div class="modal">
                                                 <div class="modal-box w-11/12 max-w-xs">
-                                                    <label for="my-modal-3"
+                                                    <label for="my-modal-6"
                                                         class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                                                     <form  method="POST" action="{{ route('bookings.updateStatus', $bs->id) }}">
                                                         @csrf
@@ -90,6 +90,7 @@
                                                         </div>
                                                     </form>
                                                 </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @empty
