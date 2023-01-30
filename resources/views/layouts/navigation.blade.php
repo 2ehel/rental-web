@@ -20,10 +20,10 @@
                         </div>
                         {{ __('Booking') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('car') }}" :active="request()->routeIs('car')">
+                    {{-- <x-nav-link href="{{ route('car') }}" :active="request()->routeIs('car')">
                         <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
                         {{ __('Car Detail') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link href="{{ route('bookings.step.one')}}" :active="request()->routeIs('bookings.step.one')">
                         <div class="px-2"> <x-fas-car-tunnel class="h-5 w-5" /> </div>
                         {{ __('Make Booking') }}
