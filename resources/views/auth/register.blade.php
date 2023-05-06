@@ -60,8 +60,8 @@
                     <x-input type="radio" name="category" value="Renter" label="Renter" />
                     <span class="label-text px-2">Renter</span>
 
-                    <x-input type="radio" name="category" value="Admin" label="Admin" />
-                    <span class="label-text px-2">Admin</span>
+                    {{-- <x-input type="radio" name="category" value="Admin" label="Admin" />
+                    <span class="label-text px-2">Admin</span> --}}
 
                 </div>
 

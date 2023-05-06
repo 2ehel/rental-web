@@ -41,7 +41,7 @@ class BookingController extends Controller
     public function create()
     {
         $cars = Car::all();
-        // dd($this->hour_duration);
+        // dd($cars);
         return view('admin.bookings.create', compact('cars'));
     }
 

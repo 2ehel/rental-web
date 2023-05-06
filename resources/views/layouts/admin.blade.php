@@ -57,7 +57,12 @@
                     :active="request()->routeIs('admin.cars.index')">
                     {{ __('Cars') }}
                 </x-admin-nav-link>
-                <x-admin-nav-link >
+                <x-admin-nav-link :href="route('admin.invoice.index')"
+                :active="request()->routeIs('admin.invoice.index')">
+                {{ __('Invoice') }}
+            </x-admin-nav-link>
+                <x-admin-nav-link :href="route('admin.history.index')"
+                :active="request()->routeIs('admin.history.index')">
                     {{ __('History') }}
                 </x-admin-nav-link>
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">

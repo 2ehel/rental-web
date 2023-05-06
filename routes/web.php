@@ -8,6 +8,8 @@ use App\Http\Controllers\User\BookingController as UserBooking;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\HistoryController;
+use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
@@ -52,6 +54,8 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/tables', TableController::class);
     Route::resource('/reservations', ReservationController::class);
     Route::resource('/bookings', BookingController::class);
+    Route::resource('/history', HistoryController::class);
+    Route::resource('/invoice', InvoiceController::class);
     Route::put('/bookings/update-status', [BookingController::class, 'status'])->name('admin.bookings.updateStatus');
     Route::resource('/cars', CarController::class);
 });

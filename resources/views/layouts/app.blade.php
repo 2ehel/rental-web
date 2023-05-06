@@ -26,7 +26,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-primary">
+    <div class="min-h-screen bg-base-200">
         @include('layouts.navigation')
         {{-- <div class="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
             <div x-data="{ open: false }"

@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class History extends Model
+class Invoice extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'history_no',
-        'title',
-        'status',
-        'description',
-        'booking_no',
         'invoice_no',
+        'booking_id',
+        'history_id',
+        'invoice_details',
     ];
 }
