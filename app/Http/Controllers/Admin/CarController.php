@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use App\Http\Requests\ReservationStoreRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CarStoreRequest;
 use Auth;
 
 class CarController extends Controller
@@ -29,9 +30,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        $cars = Car::all();
+        // $cars = Car::all();
         // dd($cars);
-        return view('admin.bookings.create', compact('cars'));
+        return view('admin.cars.create');
     }
 
     /**
@@ -40,22 +41,27 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReservationStoreRequest $request)
+    public function store(CarStoreRequest $request)
     {
-
         // dd($request);
-        Booking::create([
-            'booking_no' => 'BC'.rand(1000,9999),
-            'customer_name' => $request->customer_name,
-            'customer_id' => $request->cust_id,
-            'car_id' => $request->car_id,
-            'start_date' => $request->start_date,
-            'duration' => $request->duration,
-            'booking_status' => $request->booking_status,
-            'total_pay' => $request->total_pay,
+        $image = $request->file('image')->store('public/img');
+        $carStore =  Car::create([
+            // 'booking_no' => 'BC'.rand(1000,9999),
+            'name' => $request->name,
+            // 'owner_id' => $request
+            'model' => $request->model,
+            'brand' => $request->brand,
+            'car_plate' => $request->car_plate,
+            'year_register' => $request->year_register,
+            'charge_per_hour' => $request->charge_per_hour,
+            'charge_per_day' => $request->charge_per_day,
+            'image' => $image,
         ]);
+        $owner_id = $carStore->id;
+        $carStore->owner_id = $owner_id;
+        $carStore->save();
 
-        return to_route('admin.bookings.index')->with('success', 'Booking created successfully.');
+        return to_route('admin.cars.index')->with('success', 'Car added successfully.');
     }
 
     /**
@@ -75,10 +81,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $bookings)
-    {
-        // $tables = Table::where('status', TableStatus::Avalaiable)->get();
-        return view('admin.reservations.edit', compact('reservation', 'tables'));
+    public function edit($id)
+    {   
+        $cars = Car::find($id);
+        return view('admin.cars.edit',compact('cars'));
     }
 
     /**
@@ -88,22 +94,29 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ReservationStoreRequest $request, Booking $booking)
+    public function update(Request $request, $id)
     {
-        // $car = Car::findOrFail($request->car_id);
-        // if ($request->car > $table->guest_number) {
-        //     return back()->with('warning', 'Please choose the table base on guests.');
-        // }
-        $request_date = Carbon::parse($request->start_date);
-        $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
-        // foreach ($reservations as $res) {
-        //     if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
-        //         return back()->with('warning', 'This table is reserved for this date.');
-        //     }
-        // }
+        // dd($request);
+        $cars = Car::find($id);
+        $image = $cars->image;
+        if ($request->hasFile('image')) {
+            Storage::delete($cars->image);
+            $image = $request->file('image')->store('public/img');
+        }
 
-        $reservation->update($request->validated());
-        return to_route('admin.reservations.index')->with('success', 'Reservation updated successfully.');
+        $cars->update([
+            'name' => $request->name,
+            // 'owner_id' => $request
+            'model' => $request->model,
+            'brand' => $request->brand,
+            'car_plate' => $request->car_plate,
+            'year_register' => $request->year_register,
+            'charge_per_hour' => $request->charge_per_hour,
+            'charge_per_day' => $request->charge_per_day,
+            'image' => $image,
+        ]);
+
+        return to_route('admin.cars.index')->with('success', 'Car updated successfully.');
     }
 
     /**
@@ -112,11 +125,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy( $id)
     {
-        $reservation->delete();
-
-        return to_route('admin.reservations.index')->with('warning', 'Reservation deleted successfully.');
+        Car::find($id)->delete();
+        return to_route('admin.cars.index')->with('warning', 'Car deleted successfully.');
     }
 }
 

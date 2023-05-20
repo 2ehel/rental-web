@@ -27,11 +27,14 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->string('booking_status', 256)->nullable();
             $table->integer('total_pay')->comment('Total Rent');
+            $table->string('invoice_no',25)->nullable();
             $table->integer('created_by')->comment('Created by')->nullable();
             $table->integer('updated_by')->nullable()->comment('Updated by')->nullable();
             $table->timestamps();
             $table->integer('deleted_by')->nullable()->comment('Deleted by')->nullable();
             $table->softDeletes()->comment('Timestamp deleted_at')->nullable();
+            $table->string('history_no',25)->nullable();
+
         });
 
         DB::update("ALTER TABLE bookings AUTO_INCREMENT = 1000;");

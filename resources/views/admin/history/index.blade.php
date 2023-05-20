@@ -16,8 +16,8 @@
                             <table class="table w-full">
                                 <thead class="bg-gray-50 text-center dark:bg-gray-700">
                                     <tr>
-                                        <th>History Number</th>
                                         <th>Title</th>
+                                        <th>History Number</th>
                                         <th>Status</th>
                                         <th>Description</th>
                                         <th>Booking Number</th>
@@ -31,10 +31,10 @@
                                     {{-- {{dd($bookings)}} --}}
                                     @forelse ($history as $bh)
                                     <tr>
+                                        <td class="text-sm">{{ $bh->title }}</td>
                                         <td class="font-bold">
                                             <div class="text-sm"> {{ $bh->history_no }}</div>
                                         </td>
-                                        <td class="text-sm">{{ $bh->title }}</td>
                                         <td class="text-sm">{{ $bh->status }}</td>
                                         <td class="text-sm">{{ $bh->description }}</td>
                                         <td class="text-sm">{{ $bh->booking_no }}</td>

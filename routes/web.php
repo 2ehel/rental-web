@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryControll
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\User\RecordController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,12 +40,15 @@ Route::post('/booking/step-one', [UserBooking::class, 'storeStepOne'])->name('bo
 Route::get('/booking/step-two', [UserBooking::class, 'stepTwo'])->name('bookings.step.two');
 Route::post('/booking/step-two', [UserBooking::class, 'storeStepTwo'])->name('bookings.store.step.two');
 Route::put('/booking/update-status', [UserBooking::class, 'updateStatus'])->name('bookings.updateStatus');
+Route::get('/record/listing_record/{record}', [RecordController::class, 'index'])
+    ->name('records.listing_record');
 
 
 // })->group(function () {
-//     Route::get('/car', Car::class)->name('car');
-//     Route::get('/car_listing', CarListing::class)->name('car_listing');
-//     Route::get('/updatecar', ModalUpdateCar::class)->name('updatecar');
+    // Route::get('/car', Car::class)->name('car');
+    // Route::get('/car_listing', CarListing::class)->name('car_listing');
+    // Route::get('/updatecar', ModalUpdateCar::class)->name('updatecar');
+// Route::get('/cars/create', 'CarController@create')->name('cars.create');
 
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
@@ -56,8 +60,11 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/bookings', BookingController::class);
     Route::resource('/history', HistoryController::class);
     Route::resource('/invoice', InvoiceController::class);
-    Route::put('/bookings/update-status', [BookingController::class, 'status'])->name('admin.bookings.updateStatus');
+    // Route::put('/bookings/update-status', 'BookingController@updateStatus')->name('admin.bookings.updateStatus');
     Route::resource('/cars', CarController::class);
+    // Route::put('/items/{id}/update-status', 'ItemController@updateStatus')->name('items.updateStatus');
+    
+
 });
 
 require __DIR__ . '/auth.php';

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('booking_id',25)->nullable();
             $table->string('invoice_details',25)->nullable();
             $table->string('history_id',25)->nullable();
+            $table->timestamps();
         });
     }
 

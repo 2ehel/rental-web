@@ -233,12 +233,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-actions justify-end">
+                {{-- <div class="card-actions justify-end">
                     <button class="btn btn-primary btn-sm">Book Now</button>
-                </div>
+                </div> --}}
             </div>
         </div>
-
 
         <div class="card card-compact w-72 h-96 bg-base-100 shadow-lg">
             <figure><img src="img\ativa.png" alt="Ativa" width="250" height="350" /></figure>

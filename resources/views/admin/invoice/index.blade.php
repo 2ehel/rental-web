@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(Auth::user()->category == 'Admin')
+            @if (Auth::user()->category == 'Admin')
             @endif
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -26,19 +26,16 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    {{-- {{dd($bookings)}} --}}
-                                    @forelse ($invoice as $iv)
-                                    <tr>
-                                        <td class="font-bold">
-                                            <div class="text-sm"> {{ $bh->history_no }}</div>
-                                        </td>
-                                        <td class="text-sm">{{ $bh->invoice_no }}</td>
-                                        <td class="text-sm">{{ $bh->booking_id }}</td>
-                                        <td class="text-sm">{{ $bh->history_id }}</td>
-                                        <td class="text-sm">{{ $bh->invoice_details }}</td>
-                                        
-                                      
-                                        {{-- <td>
+                                    {{-- {{dd($invoice)}} --}}
+                                    @forelse ($invoice as $bh)
+                                        <tr>
+                                            <td class="text-sm">{{ $bh->invoice_no }}</td>
+                                            <td class="text-sm">{{ $bh->booking_id }}</td>
+                                            <td class="text-sm">{{ $bh->history_id }}</td>
+                                            <td class="text-sm">{{ $bh->invoice_details }}</td>
+
+
+                                            {{-- <td>
                                             <label for="my-modal-6" class="btn btn-sm btn-primary text text-sm">Update
                                                 Status</label>
                                             <input type="checkbox" id="my-modal-6" class="modal-toggle" />
@@ -79,11 +76,11 @@
                                             </div>
                                         </td> --}}
 
-                                    </tr>
+                                        </tr>
                                     @empty
-                                    <tr>
-                                        <td> Sorry There Are No Data For Now  </td>
-                                    </tr>
+                                        <tr>
+                                            <td> Sorry There Are No Data For Now </td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                             </table>

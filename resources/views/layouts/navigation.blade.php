@@ -29,6 +29,20 @@
                         {{ __('Make Booking') }}
                     </x-nav-link>
 
+                    <x-nav-link href="{{ route('records.listing_record',['record' => 'invoice']) }}" :active="request()->routeIs('records.listing_record', ['record' => 'invoice'])">
+                        <div class="px-2">
+                            <x-fas-file-circle-plus class="h-5 w-5" />
+                        </div>
+                        {{ __('Invoice') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link href="{{ route('records.listing_record',['record' => 'history']) }}" :active="request()->routeIs('records.listing_record', ['record' => 'history'])">
+                        <div class="px-2">
+                            <x-fas-file-circle-plus class="h-5 w-5" />
+                        </div>
+                        {{ __('History') }}
+                    </x-nav-link>
+                    
                     @if (Auth::user()->is_admin)
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Sign in as Renter') }}

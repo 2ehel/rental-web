@@ -531,10 +531,10 @@
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">Top Car of The Month</h1>
-                <p>
+                {{-- <p>
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
-                </p>
+                </p> --}}
             </div>
         </div>
         <div class="row">
@@ -542,19 +542,19 @@
                 <a href="#"><img src="./img/axia.png"
                         class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">Axia</h5>
-                <p class="text-center"><a class="btn btn-success">Details</a></p>
+                {{-- <p class="text-center"><a class="btn btn-success">Details</a></p> --}}
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
                 <a href="#"><img src="./img/myvi.png"
                         class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Myvi</h2>
-                <p class="text-center"><a class="btn btn-success">Details</a></p>
+                {{-- <p class="text-center"><a class="btn btn-success">Details</a></p> --}}
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
                 <a href="#"><img src="./img/bezza.png"
                         class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Bezza</h2>
-                <p class="text-center"><a class="btn btn-success">Details</a></p>
+                {{-- <p class="text-center"><a class="btn btn-success">Details</a></p> --}}
             </div>
         </div>
     </section>
@@ -567,10 +567,10 @@
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">Explore Car Around You</h1>
-                    <p>
+                    {{-- <p>
                         Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                         Excepteur sint occaecat cupidatat non proident.
-                    </p>
+                    </p> --}}
                 </div>
             </div>
             <div class="row">

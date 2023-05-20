@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Car;
+use App\Models\History;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
-use App\Http\Requests\ReservationStoreRequest;
+use App\Http\Requests\BookingStoreRequest;
 use Auth;
+use Arr;
+use Carbon\Carbon;
 
 
 class BookingController extends Controller
@@ -51,7 +55,7 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReservationStoreRequest $request)
+    public function store(BookingStoreRequest $request)
     {
         $car = Car::findOrFail($request->car_id);
         if($request->duration_option == 'days'){
@@ -99,19 +103,18 @@ class BookingController extends Controller
         return view('admin.bookings.edit', compact('booking','cars'));
     }
 
-    public function update(Request $request, Booking $booking)
+    public function update(Request $request, $id)
     {
-
-        $car = Car::findOrFail($request->car_id);
-        
-        // dd($car);
-
+    
+        // $car_id = intVal($request->car_id);
+        $car = Car::where('id', $request->car_id)->first();
         if($request->duration_option == 'days'){
             $this->calc_duration = $request->duration*$car->charge_per_day;
         } elseif ($request->duration_option == 'hours') {
             $this->calc_duration = $request->duration*$car->charge_per_hour ;
         } 
 
+        $booking = Booking::where('id',$id)->first();
         $booking->update([
             'customer_name' => $request->customer_name,
             'start_date' => $request->start_date,
@@ -121,6 +124,52 @@ class BookingController extends Controller
             'total_pay' => $this->calc_duration,
         ]);
 
+
+        // dd($booking->booking_status == 'Release' && empty(History::find($booking->booking_no)));
+
+        if ($booking->booking_status == 'Success' && empty($booking->invoice_no))
+        {
+            $createdAt = Carbon::parse($booking->created_at); // Parse the created_at date as a Carbon instance
+            $titleDate = $createdAt->format('dmY'); 
+
+            $invoice = Invoice::create([
+                'invoice_no' => 'IV' .rand(1000,9999),
+                'booking_id' => $booking->booking_no,
+                'history_id' => null,
+                'invoice_details' => null,
+            ]);
+
+            $booking ->update([
+                'invoice_no' => $invoice->invoice_no, 
+            ]);
+
+            $invoice ->update([
+                'invoice_details' => $invoice->invoice_no.$titleDate,
+                                                // 'Booking ' => null,
+
+            ]);
+            
+        }
+
+        if ($booking->booking_status == 'Release' && empty($booking->history_no))
+        {
+            $createdAt = Carbon::parse($booking->created_at); // Parse the created_at date as a Carbon instance
+            $titleDate = $createdAt->format('dmY'); 
+
+            
+            $history = History::create([
+            'history_no' => "HT".rand(1000,9999),
+            'title' => $booking->booking_no.$titleDate,
+            'status' => "Success",
+            'description' => null,
+            'booking_no' => $booking->booking_no,
+            'invoice_no' => $booking->invoice_no,
+            ]);
+
+            $booking ->update([
+                'history_no' => $history->history_no, 
+            ]);
+        }
 
         // $booking->update($request->validated());
         return to_route('admin.bookings.index')->with('success', 'Booking updated successfully.');
@@ -139,22 +188,19 @@ class BookingController extends Controller
         return to_route('admin.bookings.index')->with('warning', 'Booking deleted successfully.');
     }
 
-    public function updateStatus(Request $request, Booking $booking)
-    {   
-        DB::table('bookings')->where('id', $request->id )->update([
-            'booking_status' => $request->booking_status,
-        ]);
-        dd(Auth::user()->category);
-        if(Auth::user()->category == 'Rentee')
-        {        return to_route('bookings.index');
 
-        } else 
-        {        return to_route('admin.bookings.index');
+//     public function updateStatus(Request $request, $id)
+// {
+//     dd($request);
+//     $booking = Booking::findOrFail($id); // Assuming 'Item' is your model
 
+//     // Custom logic to update the status
+//     $booking->booking_status = $request->input('status');
+//     // Add any other custom logic as needed
 
-        }
+//     $booking->save();
 
-    }
-
+//     return redirect()->back()->with('success', 'Booking status updated successfully.');
+// }
     
 }
