@@ -55,7 +55,7 @@
                                         </td>
 
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
-                                        <td>
+                                        {{-- <td>
                                             <label for="my-modal-6" class="btn btn-sm btn-primary text text-sm">Update Status</label>
                                             <!-- Put this part before </body> tag -->
                                             <input type="checkbox" id="my-modal-6" class="modal-toggle" />
@@ -63,11 +63,12 @@
                                                 <div class="modal-box w-11/12 max-w-xs">
                                                     <label for="my-modal-6"
                                                         class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                    <form  method="POST" action="{{ route('bookings.updateStatus', $bs->id) }}">
+                                                        <form method="POST" action="{{ route('bookings.updateStatus', ['booking_id' => $bs->id]) }}">
                                                         @csrf
                                                         @method('PUT')
                                                             <div>
-                                                                <input type="hidden" id="id" name="id" value="{{$bs->id}}"
+                                                                <input type="hidden" id="booking_id" name="booking_id" value="{{$bs->id}}" 
+
                                                                     class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                                             </div>
                                                             <label for="booking_status"  class="block text-sm font-medium text-gray-700">Booking Status</label>
@@ -78,7 +79,7 @@
                                                                     <option value="Check In"> Check In </option>
                                                                     <option value="Check Out"> Check Out</option>
                                                                     <option value="Payment Success">Payment Success</option>
-                                                                    {{-- <option value="Success"> Success </option> --}}
+                                                                    <option value="Success"> Success </option>
                                                                 </select>
                                                             </div>
                                                             @error('booking_status')
@@ -91,7 +92,7 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                     @empty
                                     <tr>

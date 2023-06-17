@@ -36,6 +36,7 @@ class CarStoreRequest extends FormRequest
             'charge_per_hour' => ['required'],
             'charge_per_day' => ['required'],
             'image' =>['required'],
+            'description' =>['required']
         ];
     }
 }

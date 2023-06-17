@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CarStoreRequest;
 use Auth;
+use function serialize;
 
 class CarController extends Controller
 {
@@ -43,8 +44,11 @@ class CarController extends Controller
      */
     public function store(CarStoreRequest $request)
     {
-        // dd($request);
         $image = $request->file('image')->store('public/img');
+        // Retrieve the selected checkboxes for the car description
+        $description = $request->input('description', []);
+        // dd($description);
+
         $carStore =  Car::create([
             // 'booking_no' => 'BC'.rand(1000,9999),
             'name' => $request->name,
@@ -53,10 +57,14 @@ class CarController extends Controller
             'brand' => $request->brand,
             'car_plate' => $request->car_plate,
             'year_register' => $request->year_register,
+            'location' => $request->location,
+            'car_status' => $request->car_status,
             'charge_per_hour' => $request->charge_per_hour,
             'charge_per_day' => $request->charge_per_day,
             'image' => $image,
+            'description' => json_encode($description),
         ]);
+
         $owner_id = $carStore->id;
         $carStore->owner_id = $owner_id;
         $carStore->save();
@@ -99,10 +107,16 @@ class CarController extends Controller
         // dd($request);
         $cars = Car::find($id);
         $image = $cars->image;
+        
         if ($request->hasFile('image')) {
+            if (!is_null($image)){
             Storage::delete($cars->image);
+            }
             $image = $request->file('image')->store('public/img');
         }
+  
+        $description = $request->input('description', []);
+        // dd($description);
 
         $cars->update([
             'name' => $request->name,
@@ -111,9 +125,13 @@ class CarController extends Controller
             'brand' => $request->brand,
             'car_plate' => $request->car_plate,
             'year_register' => $request->year_register,
+            'location' => $request->location,
+            'car_status' => $request->car_status,
             'charge_per_hour' => $request->charge_per_hour,
             'charge_per_day' => $request->charge_per_day,
             'image' => $image,
+            'description' => json_encode($description),
+
         ]);
 
         return to_route('admin.cars.index')->with('success', 'Car updated successfully.');

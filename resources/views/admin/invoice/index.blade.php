@@ -20,6 +20,7 @@
                                         <th>Booking Id</th>
                                         <th>History Id</th>
                                         <th>Invoice Details</th>
+                                        <th>Total Pay</th>
                                         {{-- <th class="text-xs">Total Pay</th> --}}
                                         <th></th>
                                         <th></th>
@@ -33,6 +34,7 @@
                                             <td class="text-sm">{{ $bh->booking_id }}</td>
                                             <td class="text-sm">{{ $bh->history_id }}</td>
                                             <td class="text-sm">{{ $bh->invoice_details }}</td>
+                                            <td class="text-sm">{{ $bh->total_pay }}</td>
 
 
                                             {{-- <td>

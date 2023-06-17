@@ -59,7 +59,7 @@
                                             <td class="text-sm">{{ $bh->book_history->description }}</td>
                                             <td class="text-sm">{{ $bh->book_history->booking_no }}</td>
                                             <td class="text-sm">{{ $bh->book_history->invoice_no }}</td>
-                                        {{-- <td> {{ 'RM '.$iv->total_pay}} </td> --}}
+                                            
                                     </tr>
                                     @empty
                                     <tr>

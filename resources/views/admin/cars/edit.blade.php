@@ -7,10 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <div class="flex m-2 p-2">
-                <a href="{{ route('admin.tables.index') }}"
-                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Table Index</a>
-            </div> --}}
+            <div class="flex m-2 p-2">
+                <a href="{{ route('admin.cars.index') }}"
+                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Car Index</a>
+            </div>
             {{-- {{dd($cars)}} --}}
 
             <div class="m-2 p-2 bg-slate-100 rounded">
@@ -82,6 +82,30 @@
                         </div>
 
                         <div class="sm:col-span-6">
+                            <label for="location" class="block text-sm font-medium text-gray-700"> Location
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" id="location" name="location" value="{{ $cars->location}}"
+                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                            @error('location')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="sm:col-span-6">
+                            <label for="car_status" class="block text-sm font-medium text-gray-700"> Car Status
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" id="car_status" name="car_status" value="Available" 
+                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                            @error('car_status')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="sm:col-span-6">
                             <label for="charge_per_hour" class="block text-sm font-medium text-gray-700"> Charge Per Hour
                             </label>
                             <div class="mt-1">
@@ -105,6 +129,39 @@
                                 <div class="text-sm text-red-400">{{ $message }}</div>
                             @enderror
                         </div>
+                        
+                        <div class="sm:col-span-6">
+                            <label for="description" class="block text-sm font-medium text-gray-700">Car
+                                Description</label>
+                            <div class="mt-1">
+                                <div class="form-control">
+                                    <label class="cursor-pointer label">
+                                        <span class="label-text">Auto</span>
+                                        <input type="checkbox" checked="checked" name="description[]" value="Auto"
+                                            class="checkbox checkbox-sm" />
+                                    </label>
+                                <div class="cursor-pointer label">
+                                    <span class="label-text">Manual</span>
+                                    <input type="checkbox" checked="checked" name="description[]" value="Manual"
+                                        class="checkbox checkbox-sm" />
+                                </div>
+                                <div class="cursor-pointer label">
+                                    <span class="label-text">5 seaters</span>
+                                    <input type="checkbox" checked="checked" name="description[]" value="5_seat"
+                                        class="checkbox checkbox-sm" />
+                                </div>
+                                <div class="cursor-pointer label">
+                                    <span class="label-text">7 seaters</span>
+                                    <input type="checkbox" checked="checked" name="description[]" value="7_seat"
+                                        class="checkbox checkbox-sm" />
+                                </div>
+                            </div>
+
+                            </div>
+                            @error('description')
+                                <div class="text-sm text-red-400">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="sm:col-span-6">
                             <label for="image" class="block text-sm font-medium text-gray-700"> Car Image
                             </label>
@@ -119,6 +176,7 @@
                                 <div class="text-sm text-red-400">{{ $message }}</div>
                             @enderror
                         </div>
+
 
                         <div class="mt-6 p-4">
                             <button type="submit"

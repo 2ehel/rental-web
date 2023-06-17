@@ -12,7 +12,7 @@ class Booking extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['booking_no','customer_name','customer_id','car_id','car_owner_id','start_date','duration' ,'duration_option','booking_status','total_pay','invoice_no','created_by', 'updated_by','history_no'];
+    protected $fillable = ['booking_no','customer_name','customer_id','car_id','car_owner_id','start_date','end_date','duration' ,'duration_option','booking_status','total_pay','invoice_no','created_by', 'updated_by','history_no'];
     protected $dates = ['start_date'];
 
     public function car_book()

@@ -23,6 +23,8 @@
                                         <th>Owner</th>
                                         <th>Car Plate</th>
                                         <th>Year<br>Register </th>
+                                        <th>Location</th>
+                                        {{-- <th></th> --}}
                                         <th class="text-xs">Charge<br>(per hour)</th>
                                         <th class="text-xs">Charge<br>(per day)</th>
                                         <th>Car Image</th>
@@ -50,7 +52,8 @@
                                             <td class="text-sm">{{ $r->name }}</td>
                                             <td class="text-sm"> {{ $r->car_plate }} </td>
                                             <td class="text-sm"> {{ $r->year_register }} </td>
-
+                                            {{-- <td class="text-sm"> {{Str::words($r->location,4)}} </td> --}}
+                                            <td class="text-sm"><a class="btn btn-xs btn-accent" href="https://www.google.com/maps/search/?api=1&query={!! urlencode($r->location) !!}" target="_blank">View Location</a></td>
                                             <td> {{ 'RM ' . $r->charge_per_hour }} </td>
                                             <td> {{ 'RM ' . $r->charge_per_day }} </td>
                                             <td class="text-sm">

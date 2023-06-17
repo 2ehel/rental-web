@@ -58,12 +58,39 @@ class BookingController extends Controller
     public function store(BookingStoreRequest $request)
     {
         $car = Car::findOrFail($request->car_id);
+
+        // Convert the start time to a Carbon instance
+        $startDate = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start_date'));
+
+        // Add the duration (days and hours) to the start time to calculate the end time
+        if ($request->duration_option == 'days'){ 
+            $endDate = $startDate->copy()->addDays($request->duration);
+        } elseif ($request->duration_option == 'hours') {
+        $endDate = $startDate->copy()->addHours($request->duration);
+        }
+
+        // Check if there are any overlapping bookings for the same car
+        $overlappingBookings = Booking::where('car_id', $request->car_id)
+        ->where(function ($query) use ($startDate, $endDate) {
+        $query->where(function ($q) use ($startDate, $endDate) {
+            $q->where('start_date', '<=', $endDate)
+                ->where('end_date', '>=', $startDate);
+        });
+        })
+        ->get();
+
+        if ($overlappingBookings->isNotEmpty()) {
+        // Handle booking conflict, inform the customer and suggest an alternative
+        return redirect()->back()->with('error', 'The car is not available during the requested time. Please choose a different time or car.');}
+
+        // You can format the end time as needed
+        $formattedEndTime = $endDate->format('Y-m-d H:i:s');
+
         if($request->duration_option == 'days'){
             $this->calc_duration = $request->duration*$car->charge_per_day;
         } else {
             $this->calc_duration = $request->duration*$car->charge_per_hour;
         } 
-// dd($request);
         Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
             'customer_name' => $request->first_name." ".$request->last_name,
@@ -71,6 +98,7 @@ class BookingController extends Controller
             'car_id' => $request->car_id,
             'car_owner_id' => $car->owner_id,
             'start_date' => $request->start_date,
+            'end_date' => $endDate,
             'duration' => $request->duration,
             'booking_status' => $request->booking_status,
             'duration_option' => $request->duration_option,

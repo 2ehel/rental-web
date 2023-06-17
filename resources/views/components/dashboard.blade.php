@@ -233,9 +233,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="card-actions justify-end">
-                    <button class="btn btn-primary btn-sm">Book Now</button>
-                </div> --}}
             </div>
         </div>
 
