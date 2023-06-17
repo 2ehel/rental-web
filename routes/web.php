@@ -12,7 +12,7 @@ use App\Http\Controllers\Frontend\ReservationController as FrontendReservationCo
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\User\RecordController;
 use App\Http\Controllers\User\SearchController;
-use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +25,7 @@ Route::get('/dashboard', [SearchController::class, 'index'])
     ->name('dashboard');
     
 Route::group(['middleware' => 'auth'], function () {
-        Route::get('/profile', 'ProfileController@show')->name('profile.show');
+        Route::get('/profile/view', [ProfileController::class, 'index'])->name('profile.index');
         Route::post('/profile', 'ProfileController@update')->name('profile.update');
     });
     

@@ -72,8 +72,7 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <x-dropdown-link :href="route('profile.show')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                        <x-dropdown-link  href="{{ route('profile.index') }}" :active="request()->routeIs('profile.index')">
                                 {{ __('Profile') }}
                         </x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
