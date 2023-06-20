@@ -58,9 +58,9 @@ class BookingController extends Controller
     public function store(BookingStoreRequest $request)
     {
         $car = Car::findOrFail($request->car_id);
-
+        
         // Convert the start time to a Carbon instance
-        $startDate = Carbon::createFromFormat('Y-m-d\TH:i', $request->input('start_date'));
+        $startDate = Carbon::createFromFormat('Y-m-d H:i', $request->input('start_date') . ' ' . $request->input('start_time'));
 
         // Add the duration (days and hours) to the start time to calculate the end time
         if ($request->duration_option == 'days'){ 
@@ -68,7 +68,7 @@ class BookingController extends Controller
         } elseif ($request->duration_option == 'hours') {
         $endDate = $startDate->copy()->addHours($request->duration);
         }
-
+        
         // Check if there are any overlapping bookings for the same car
         $overlappingBookings = Booking::where('car_id', $request->car_id)
         ->where(function ($query) use ($startDate, $endDate) {
@@ -82,7 +82,7 @@ class BookingController extends Controller
         if ($overlappingBookings->isNotEmpty()) {
         // Handle booking conflict, inform the customer and suggest an alternative
         return redirect()->back()->with('error', 'The car is not available during the requested time. Please choose a different time or car.');}
-
+            
         // You can format the end time as needed
         $formattedEndTime = $endDate->format('Y-m-d H:i:s');
 
@@ -104,7 +104,7 @@ class BookingController extends Controller
             'duration_option' => $request->duration_option,
             'total_pay' => $this->calc_duration,
         ]);
-
+        
         return to_route('admin.bookings.index')->with('success', 'Booking created successfully.');
     }
 

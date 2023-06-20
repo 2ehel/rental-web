@@ -13,6 +13,8 @@ use App\Rules\TimeBetween;
 use Carbon\Carbon;
 use DB;
 use Auth;
+use Session;
+use Stripe;
 
 class BookingController extends Controller
 {
@@ -42,13 +44,17 @@ class BookingController extends Controller
             'duration_option' => ['required'],
             'duration' => ['required'],
             'start_date' => ['required'],
+            'start_time' => ['required'],
             'booking_status' => ['required'],
             'total_pay' => ['required'],
         ]);
+        // Convert the start time to a Carbon instance
+        $startDate = Carbon::createFromFormat('Y-m-d H:i', $request->input('start_date') . ' ' . $request->input('start_time'));
             $bookings = new Booking();
             $bookings->fill([
             'customer_id' => $validated['customer_id'],
-            'start_date' => $validated['start_date'],
+            'start_date' => $startDate,
+            // 'start_time' => $startDate,
             'duration_option' => $validated['duration_option'],
             'duration' => $validated['duration'],
             'booking_status' => $validated['booking_status'],
@@ -71,9 +77,9 @@ class BookingController extends Controller
     public function storeStepTwo(Request $request)
     {
         $bookings = $request->session()->get('bookings');
-        // Convert the start time to a Carbon instance
-        $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $bookings->start_date);
-
+        // dd($bookings);
+        
+        $startDate = $bookings->start_date;
         // Add the duration (days and hours) to the start time to calculate the end time
         if ($bookings->duration_option == 'days'){ 
             $endDate = $startDate->copy()->addDays($bookings->duration);
@@ -89,7 +95,7 @@ class BookingController extends Controller
                 ->where('end_date', '>=', $startDate);
         });
         })
-        ->get();
+        ->get();  
 
         if ($overlappingBookings->isNotEmpty()) {
         // Handle booking conflict, inform the customer and suggest an alternative
@@ -107,6 +113,7 @@ class BookingController extends Controller
         } else {
             $this->calc_duration = $bookings->duration*$car->charge_per_hour;
         } 
+        
         $bookings = Booking::create([
             'booking_no' => 'BC'.rand(1000,9999),
             'customer_name' => Auth::user()->name,
@@ -123,10 +130,115 @@ class BookingController extends Controller
 
         ]); 
         $bookings->save();
-        $request->session()->forget('bookings');
+        $request->session()->put('bookings', $bookings);
 
-        return to_route('thankyou');
+        return to_route('bookings.payment');
+        // return to_route('thankyou');
     }
+
+    public function payment(Request $request)
+    {
+        $bookings = $request->session()->get('bookings');
+        return view('bookings.payment',compact('bookings'));
+    }
+
+    public function storePayment(Request $request)
+    {
+        $booking_no = $request->input('booking_no');
+        $action = $request->input('action');
+
+        if ($action === 'cancel') {
+            Booking::where('booking_no', $booking_no)->delete();
+            return redirect()->route('bookings.step.two');
+
+        } elseif ($action === 'proceed') {
+            // $booking =  Booking::where('booking_no', $booking_no)->get();
+            // $request->session()->put('booking', $booking);
+            return redirect()->route('bookings.checkout');
+        }
+
+        // return to_route('bookings.step.two');
+    }
+
+    public function checkout(Request $request)
+    {
+        $booking = $request->session()->get('booking');
+        return view('bookings.stripe',compact('booking'));
+    }
+ 
+    public function session(Request $request)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+  
+
+        $customer = Stripe\Customer::create(array(
+    
+                "address" => [
+    
+                        "line1" => "Virani Chowk",
+    
+                        "postal_code" => "360001",
+    
+                        "city" => "Rajkot",
+    
+                        "state" => "GJ",
+    
+                        "country" => "IN",
+    
+                    ],
+    
+                "email" => "demo@gmail.com",
+    
+                "name" => "Hardik Savani",
+    
+                "source" => $request->stripeToken
+    
+             ));
+    
+      
+    
+        Stripe\Charge::create ([
+    
+                "amount" => 100 * 100,
+    
+                "currency" => "usd",
+    
+                "customer" => $customer->id,
+    
+                "description" => "Test payment from itsolutionstuff.com.",
+    
+                "shipping" => [
+    
+                  "name" => "Jenny Rosen",
+    
+                  "address" => [
+    
+                    "line1" => "510 Townsend St",
+    
+                    "postal_code" => "98140",
+    
+                    "city" => "San Francisco",
+    
+                    "state" => "CA",
+    
+                    "country" => "US",
+    
+                  ],
+    
+                ]
+    
+        ]); 
+    
+        Session::flash('success', 'Payment successful!');
+    
+        return back();
+    }
+    public function success()
+    {
+        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
+    }
+
     public function updateStatus(Request $request, $booking_id)
     {   
         dd($request);

@@ -25,6 +25,7 @@
                                         <th>Duration</th>
                                         <th>Booking Status </th>
                                         <th class="text-xs">Total Pay</th>
+                                        <th>Location </th>
                                         <th></th>
                                         {{-- <th></th> --}}
                                     </tr>
@@ -55,6 +56,7 @@
                                         </td>
 
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
+                                        {{-- <td class="text-sm"><a class="btn btn-xs btn-accent" href="https://www.google.com/maps/search/?api=1&query={!! urlencode($r->location) !!}" target="_blank">View Location</a></td> --}}
                                         {{-- <td>
                                             <label for="my-modal-6" class="btn btn-sm btn-primary text text-sm">Update Status</label>
                                             <!-- Put this part before </body> tag -->

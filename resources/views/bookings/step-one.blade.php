@@ -57,9 +57,9 @@
                                         Date
                                     </label>
                                     <div class="mt-1">
-                                        <input type="datetime-local" id="start_date" name="start_date" step="1800" min="{{ now()->format('Y-m-d\TH:i') }}"
-                                            class="block w-full appearance-none bg-white input input-bordered input-sm w-full max-w-xs border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                    </div>
+                                        <input type="date" name="start_date" id="start_date"class="block w-full appearance-none bg-white input input-bordered input-sm w-full max-w-xs border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                        <input type="time" name="start_time" id="start_time" class="block w-full appearance-none bg-white input input-bordered input-sm w-full max-w-xs border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>         
+                                    </div> 
                                     @error('start_date')
                                     <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
