@@ -23,44 +23,68 @@
                                         <th>Owner</th>
                                         <th>Car Plate</th>
                                         <th>Year<br>Register </th>
+                                        <th>Location</th>
+                                        {{-- <th></th> --}}
                                         <th class="text-xs">Charge<br>(per hour)</th>
+                                        <th class="text-xs">Charge<br>(per day)</th>
+                                        <th>Car Image</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($cars as $item => $r)
-
-                                    <!-- row 1 -->
-                                    <tr>
-                                        {{-- <th>
+                                        <!-- row 1 -->
+                                        <tr>
+                                            {{-- <th>
                                             <label>
                                                 <input type="checkbox" class="checkbox" />
                                             </label>
                                         </th> --}}
-                                        <td class="font-bold">
-                                            <div class="flex items-center space-x-3">
-                                                <div>
-                                                    <div class="text-sm"> {{ $r->brand }}</div>
-                                                    <div class="font-bold">{{ $r->model }}</div>
+                                            <td class="font-bold">
+                                                <div class="flex items-center space-x-3">
+                                                    <div>
+                                                        <div class="text-sm"> {{ $r->brand }}</div>
+                                                        <div class="font-bold">{{ $r->model }}</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-sm">{{ $r->name }}</td>
-                                        <td class="text-sm"> {{$r->car_plate}} </td>
-                                        <td class="text-sm"> {{$r->year_register}} </td>
+                                            </td>
+                                            <td class="text-sm">{{ $r->name }}</td>
+                                            <td class="text-sm"> {{ $r->car_plate }} </td>
+                                            <td class="text-sm"> {{ $r->year_register }} </td>
+                                            {{-- <td class="text-sm"> {{Str::words($r->location,4)}} </td> --}}
+                                            <td class="text-sm"><a class="btn btn-xs btn-accent" href="https://www.google.com/maps/search/?api=1&query={!! urlencode($r->location) !!}" target="_blank">View Location</a></td>
+                                            <td> {{ 'RM ' . $r->charge_per_hour }} </td>
+                                            <td> {{ 'RM ' . $r->charge_per_day }} </td>
+                                            <td class="text-sm">
+                                                <div> @isset($r->image) 
+                                                     <img src="{{ Storage::url($r->image) }}" class="w-16 h-16 rounded"></div>
+                                                     @endisset
+                                            </td>
+                                            <th>
+                                                <button class="btn btn-primary btn-xs">details</button>
+                                            </th>
 
-                                        <td> {{ 'RM '.$r->charge}} </td>
-                                        <th>
-                                            <button class="btn btn-primary btn-xs">details</button>
-                                        </th>
-                                        <td><button onclick="Livewire.emit('openModal', 'modal-make-booking')"
-                                                class="btn btn-sm btn-secondary gap-2">Book</button></td>
-                                    </tr>
+                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                                <div class="flex space-x-2">
+                                                    <a href="{{ route('admin.cars.edit', $r->id) }}"
+                                                        class="btn btn-secondary btn-sm">Edit</a>
+                                                    <form class="text btn btn-warning btn-sm text-sm text-white"
+                                                        method="POST"
+                                                        action="{{ route('admin.cars.destroy', $r->id) }}"
+                                                        onsubmit="return confirm('Are you sure?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">DELETE</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td>
+                                        </tr>
                                     @empty
-                                    <tr>
-                                        <td> Sorry There Are No Data For Now  </td>
-                                    </tr>
+                                        <tr>
+                                            <td> Sorry There Are No Data For Now </td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                                 <!-- foot -->

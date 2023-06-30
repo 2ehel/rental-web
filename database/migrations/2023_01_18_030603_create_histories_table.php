@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('status')->default('inactive');
             $table->text('description')->nullable();
+            $table->string('booking_no')->nullable();
+            $table->string('invoice_no')->nullable();
             $table->timestamps();
         });
     }

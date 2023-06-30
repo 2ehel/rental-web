@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name',100);
             $table->integer('owner_id')->nullable();
-            $table->text('description')->nullable();
+            $table->json('description')->nullable();
             $table->string('brand',10);
             $table->string('model',10)->nullable();
             $table->string('car_plate',10)->unique();
             // $table->string('ic_number', 12)->unique();
             $table->integer('year_register')->nullable();
+            $table->string('location')->nullable();
+            $table->string('car_status')->nullable()->default("Available");
             $table->integer('charge_per_hour')->nullable();
             $table->integer('charge_per_day')->nullable();
             $table->string('image')->nullable();

@@ -25,6 +25,13 @@
     <!-- Styles -->
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        function updateBookingStatus(bookingId) {
+            // Perform your update logic here using the bookingId parameter
+            // You can make an AJAX request or update the DOM as needed
+            console.log('Updating booking status for ID:', bookingId);
+        }
+    </script>
 </head>
 
 <body class="font-sans antialiased">
@@ -33,7 +40,7 @@
             class="flex flex-col flex-shrink-0 w-full text-gray-700 bg-slate-100 md:w-64 dark:text-gray-200 dark:bg-gray-800"
             x-data="{ open: false }">
             <div class="flex flex-row items-center justify-between flex-shrink-0 px-8 py-4">
-                <a href="#"
+                <a href="{{ route('dashboard') }}"
                     class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark:text-white focus:outline-none focus:shadow-outline">EZ Rent</a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -57,9 +64,15 @@
                     :active="request()->routeIs('admin.cars.index')">
                     {{ __('Cars') }}
                 </x-admin-nav-link>
-                <x-admin-nav-link >
+                <x-admin-nav-link :href="route('admin.invoice.index')"
+                :active="request()->routeIs('admin.invoice.index')">
+                {{ __('Invoice') }}
+            </x-admin-nav-link>
+                <x-admin-nav-link :href="route('admin.history.index')"
+                :active="request()->routeIs('admin.history.index')">
                     {{ __('History') }}
                 </x-admin-nav-link>
+                
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"
                         class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark:bg-transparent dark:focus:text-white dark:hover:text-white dark:focus:bg-gray-600 dark:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">

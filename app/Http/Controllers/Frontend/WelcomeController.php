@@ -10,9 +10,9 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $specials = Category::where('name', 'specials')->first();
+        // $specials = Category::where('name', 'specials')->first();
 
-        return view('welcome', compact('specials'));
+        return view('welcome');
     }
     public function thankyou()
     {

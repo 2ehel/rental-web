@@ -20,18 +20,32 @@
                         </div>
                         {{ __('Booking') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('car') }}" :active="request()->routeIs('car')">
+                    {{-- <x-nav-link href="{{ route('car') }}" :active="request()->routeIs('car')">
                         <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
                         {{ __('Car Detail') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link href="{{ route('bookings.step.one')}}" :active="request()->routeIs('bookings.step.one')">
-                        <div class="px-2"> <x-fas-car-side class="h-5 w-5" /> </div>
+                        <div class="px-2"> <x-fas-car-tunnel class="h-5 w-5" /> </div>
                         {{ __('Make Booking') }}
                     </x-nav-link>
 
+                    <x-nav-link href="{{ route('records.listing_record',['record' => 'invoice']) }}" :active="request()->routeIs('records.listing_record', ['record' => 'invoice'])">
+                        <div class="px-2">
+                            <x-fas-file-circle-plus class="h-5 w-5" />
+                        </div>
+                        {{ __('Invoice') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link href="{{ route('records.listing_record',['record' => 'history']) }}" :active="request()->routeIs('records.listing_record', ['record' => 'history'])">
+                        <div class="px-2">
+                            <x-fas-file-circle-plus class="h-5 w-5" />
+                        </div>
+                        {{ __('History') }}
+                    </x-nav-link>
+                    
                     @if (Auth::user()->is_admin)
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
+                        {{ __('Sign in as Renter') }}
                     </x-nav-link>
                     @endif
                 </div>
@@ -58,9 +72,11 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                        <x-dropdown-link  href="{{ route('profile.index') }}" :active="request()->routeIs('profile.index')">
+                                {{ __('Profile') }}
+                        </x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}

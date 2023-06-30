@@ -13,6 +13,8 @@ class History extends Model
         'history_no',
         'title',
         'status',
-        'description'
+        'description',
+        'booking_no',
+        'invoice_no',
     ];
 }
