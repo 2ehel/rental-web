@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'stripe' => [
+    //     'secret' => 'pk_test_51NKid6ADAt9qUP4qFEI18IFZrI0OlLhv6VH2ZG1eG9HghQEMEtePSFCc2nyFH5Cq80BH2cn5k8wZGV36HdbxjkNp00YKdqhHzf',
+    // ],
+
 ];

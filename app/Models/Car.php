@@ -13,7 +13,7 @@ class Car extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['name','model','brand','description','car_plate','year_register','location','car_status','charge_per_hour','charge_per_day','image','created_by', 'updated_by'];
+    protected $fillable = ['name','model','brand','owner_id','description','car_plate','year_register','location','car_status','charge_per_hour','charge_per_day','image','created_by', 'updated_by'];
 
     public function car_book()
     {

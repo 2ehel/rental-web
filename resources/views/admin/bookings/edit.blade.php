@@ -118,12 +118,9 @@
                                     <option value="{{ $booking->booking_status }} "> {{ $booking->booking_status }}
                                     </option>
                                     <option value="Booking Receive">Booking Receive </option>
+                                    <option value="Payment Received">Payment Received</option>
                                     <option value="Pickup Car">Pickup Car</option>
                                     <option value="Cancel">Cancel</option>
-                                    <option value="Payment Success">Payment Success</option>
-                                    <option value="Pending">Pending </option>
-                                    <option value="Negotation">Negotation </option>
-                                    <option value="Success">Success </option>
                                     <option value="Release">Release </option>
                                 </select>
                             </div>

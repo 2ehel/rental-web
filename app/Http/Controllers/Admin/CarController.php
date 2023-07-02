@@ -47,12 +47,13 @@ class CarController extends Controller
         $image = $request->file('image')->store('public/img');
         // Retrieve the selected checkboxes for the car description
         $description = $request->input('description', []);
-        // dd($description);
+        $owner_id = Auth::user()->id;
+        // dd($owner_id);
 
         $carStore =  Car::create([
             // 'booking_no' => 'BC'.rand(1000,9999),
             'name' => $request->name,
-            // 'owner_id' => $request
+            'owner_id' => $owner_id,
             'model' => $request->model,
             'brand' => $request->brand,
             'car_plate' => $request->car_plate,
@@ -65,8 +66,8 @@ class CarController extends Controller
             'description' => json_encode($description),
         ]);
 
-        $owner_id = $carStore->id;
-        $carStore->owner_id = $owner_id;
+        
+        // $carStore->owner_id = $owner_id;
         $carStore->save();
 
         return to_route('admin.cars.index')->with('success', 'Car added successfully.');

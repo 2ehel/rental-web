@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    {{-- {{dd($bookings)}} --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
@@ -16,7 +16,7 @@
                     <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                         <div class="overflow-hidden shadow-md sm:rounded-lg">
                             <table class="table w-full">
-                                <thead class="bg-gray-50 text-center dark:bg-gray-700">
+                                <thead class="bg-gray-50 text-center text-base-100 dark:bg-gray-700">
                                     <tr>
                                         <th>Customer Name</th>
                                         <th>Customer ID</th>
@@ -56,45 +56,11 @@
                                         </td>
 
                                         <td> {{ 'RM '.$bs->total_pay}} </td>
-                                        {{-- <td class="text-sm"><a class="btn btn-xs btn-accent" href="https://www.google.com/maps/search/?api=1&query={!! urlencode($r->location) !!}" target="_blank">View Location</a></td> --}}
-                                        {{-- <td>
-                                            <label for="my-modal-6" class="btn btn-sm btn-primary text text-sm">Update Status</label>
-                                            <!-- Put this part before </body> tag -->
-                                            <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-                                            <div class="modal">
-                                                <div class="modal-box w-11/12 max-w-xs">
-                                                    <label for="my-modal-6"
-                                                        class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                        <form method="POST" action="{{ route('bookings.updateStatus', ['booking_id' => $bs->id]) }}">
-                                                        @csrf
-                                                        @method('PUT')
-                                                            <div>
-                                                                <input type="hidden" id="booking_id" name="booking_id" value="{{$bs->id}}" 
-
-                                                                    class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                                            </div>
-                                                            <label for="booking_status"  class="block text-sm font-medium text-gray-700">Booking Status</label>
-                                                            <div class="mt-1">
-                                                                <select id="booking_status" name="booking_status"
-                                                                    class="select select-sm select-bordered">
-                                                                    <option value="Pending"> Pending </option>
-                                                                    <option value="Check In"> Check In </option>
-                                                                    <option value="Check Out"> Check Out</option>
-                                                                    <option value="Payment Success">Payment Success</option>
-                                                                    <option value="Success"> Success </option>
-                                                                </select>
-                                                            </div>
-                                                            @error('booking_status')
-                                                            <div class="text-sm text-red-400">{{ $message }}</div>
-                                                            @enderror
-                                                        <div class="mt-6 p-4">
-                                                            <button type="submit"
-                                                                class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg btn btn-sm text-white">Update</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td> --}}
+                                        @if ($bs->car_book && $bs->car_book->location)
+                                        <td class="text-sm"><a class="btn btn-xs btn-accent" href="https://www.google.com/maps/search/?api=1&query={!! urlencode($bs->car_book->location) !!}" target="_blank">View Location</a></td>
+                                        @else
+                                        <td> <p>No Location Stated</p> </td>
+                                        @endif
                                     </tr>
                                     @empty
                                     <tr>

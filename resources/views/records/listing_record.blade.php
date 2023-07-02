@@ -13,11 +13,11 @@
                         <div class="overflow-hidden shadow-md sm:rounded-lg">
                             @if ($record == "invoice")
                             <table class="table w-full">
-                                <thead class="bg-gray-50 text-center dark:bg-gray-700">
+                                <thead class="bg-gray-50 text-center text-base-100 dark:bg-gray-700">
                                     <tr>
                                         <th>Invoice Number</th>
                                         <th>Booking ID</th>
-                                        <th>History ID</th>
+                                        
                                         <th>Invoice Details</th>
                                         <th class="text-xs">Total Pay</th>
                                     </tr>
@@ -27,7 +27,7 @@
                                     <tr>
                                         <td class="text-sm">{{ $iv->book_invoice->invoice_no }}</td>
                                             <td class="text-sm">{{ $iv->book_invoice->booking_id }}</td>
-                                            <td class="text-sm">{{ $iv->book_invoice->history_id }}</td>
+                                            
                                             <td class="text-sm">{{ $iv->book_invoice->invoice_details }}</td>
                                         <td class="text-sm"> {{ 'RM '.$iv->total_pay}} </td>
                                     </tr>
@@ -40,12 +40,12 @@
                             </table>
                             @elseif ($record == "history")
                             <table class="table w-full">
-                                <thead class="bg-gray-50 text-center dark:bg-gray-700">
+                                <thead class="bg-gray-50 text-center text-base-100 dark:bg-gray-700">
                                     <tr>
                                         <th>Title</th>
                                         <th>History Number</th>
                                         <th>Status</th>
-                                        <th>Description</th>
+                                        {{-- <th>Description</th> --}}
                                         <th>Booking Number</th>
                                         <th>Invoice Number</th>
                                     </tr>
@@ -56,7 +56,7 @@
                                         <td class="text-sm">{{ $bh->book_history->title }}</td>
                                             <td class="text-sm">{{ $bh->book_history->history_no }}</td>
                                             <td class="text-sm">{{ $bh->book_history->status }}</td>
-                                            <td class="text-sm">{{ $bh->book_history->description }}</td>
+                                            {{-- <td class="text-sm">{{ $bh->book_history->description }}</td> --}}
                                             <td class="text-sm">{{ $bh->book_history->booking_no }}</td>
                                             <td class="text-sm">{{ $bh->book_history->invoice_no }}</td>
                                             

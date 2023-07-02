@@ -104,7 +104,7 @@ class BookingController extends Controller
             'duration_option' => $request->duration_option,
             'total_pay' => $this->calc_duration,
         ]);
-        
+
         return to_route('admin.bookings.index')->with('success', 'Booking created successfully.');
     }
 
@@ -155,7 +155,7 @@ class BookingController extends Controller
 
         // dd($booking->booking_status == 'Release' && empty(History::find($booking->booking_no)));
 
-        if ($booking->booking_status == 'Success' && empty($booking->invoice_no))
+        if ($booking->booking_status == 'Payment Received' && empty($booking->invoice_no))
         {
             $createdAt = Carbon::parse($booking->created_at); // Parse the created_at date as a Carbon instance
             $titleDate = $createdAt->format('dmY'); 
@@ -164,7 +164,7 @@ class BookingController extends Controller
                 'invoice_no' => 'IV' .rand(1000,9999),
                 'booking_id' => $booking->booking_no,
                 'history_id' => null,
-                'invoice_details' => null,
+                'invoice_details' => json_encode(['null' => null ]),
             ]);
 
             $booking ->update([
@@ -217,18 +217,6 @@ class BookingController extends Controller
     }
 
 
-//     public function updateStatus(Request $request, $id)
-// {
-//     dd($request);
-//     $booking = Booking::findOrFail($id); // Assuming 'Item' is your model
 
-//     // Custom logic to update the status
-//     $booking->booking_status = $request->input('status');
-//     // Add any other custom logic as needed
-
-//     $booking->save();
-
-//     return redirect()->back()->with('success', 'Booking status updated successfully.');
-// }
     
 }

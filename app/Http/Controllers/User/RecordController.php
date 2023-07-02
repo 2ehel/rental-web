@@ -19,9 +19,9 @@ class RecordController extends Controller
         $bookings = Booking::where('customer_id',$userid);
 
         $listing = $bookings->when($record == 'invoice', function ($query) {
-            return $query->with('book_invoice');
+            return $query->with('book_invoice')->whereNotNull('invoice_no');
         })->when($record == 'history', function ($query) {
-            return $query->with('book_history');
+            return $query->with('book_history')->whereNotNull('invoice_no');
         })->get();
 
         // dd($listing);

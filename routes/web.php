@@ -39,7 +39,7 @@ Route::post('/booking/step-one', [UserBooking::class, 'storeStepOne'])->name('bo
 Route::get('/booking/step-two', [UserBooking::class, 'stepTwo'])->name('bookings.step.two');
 Route::post('/booking/step-two', [UserBooking::class, 'storeStepTwo'])->name('bookings.store.step.two');
 Route::get('/booking/payment', [UserBooking::class, 'payment'])->name('bookings.payment');
-Route::post('/booking/payment', [UserBooking::class, 'storePayment'])->name('bookings.store.payment');
+Route::post('/booking/payment', [UserBooking::class, 'session'])->name('bookings.store.payment');
 Route::put('/booking/update-status/{booking_id}', [UserBooking::class, 'updateStatus'])->name('bookings.updateStatus');
 Route::get('/record/listing_record/{record}', [RecordController::class, 'index'])
     ->name('records.listing_record');

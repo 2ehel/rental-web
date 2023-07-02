@@ -15,6 +15,7 @@ use DB;
 use Auth;
 use Session;
 use Stripe;
+use Validator;
 
 class BookingController extends Controller
 {
@@ -23,7 +24,7 @@ class BookingController extends Controller
     public function listing()
     {
         $user_id = Auth::user()->id;
-        $bookings =  Booking::where('customer_id', $user_id)->get();
+        $bookings =  Booking::with('car_book')->where('customer_id', $user_id)->get();
         // dd($bookings);
         return view('bookings.index', compact(['bookings']));
     }
@@ -139,104 +140,59 @@ class BookingController extends Controller
     public function payment(Request $request)
     {
         $bookings = $request->session()->get('bookings');
-        return view('bookings.payment',compact('bookings'));
+        $payment = $request->session()->get('payment');
+        return view('bookings.payment',compact('bookings','payment'));
     }
 
-    public function storePayment(Request $request)
-    {
-        $booking_no = $request->input('booking_no');
-        $action = $request->input('action');
-
-        if ($action === 'cancel') {
-            Booking::where('booking_no', $booking_no)->delete();
-            return redirect()->route('bookings.step.two');
-
-        } elseif ($action === 'proceed') {
-            // $booking =  Booking::where('booking_no', $booking_no)->get();
-            // $request->session()->put('booking', $booking);
-            return redirect()->route('bookings.checkout');
-        }
-
-        // return to_route('bookings.step.two');
-    }
-
-    public function checkout(Request $request)
-    {
-        $booking = $request->session()->get('booking');
-        return view('bookings.stripe',compact('booking'));
-    }
- 
     public function session(Request $request)
-    {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required',
+        'card_number' => 'required',
+        'cvc_card' => 'required',
+        'expiration_month' => 'required',
+        'expiration_year' => 'required',
+    ]);
 
-  
-
-        $customer = Stripe\Customer::create(array(
-    
-                "address" => [
-    
-                        "line1" => "Virani Chowk",
-    
-                        "postal_code" => "360001",
-    
-                        "city" => "Rajkot",
-    
-                        "state" => "GJ",
-    
-                        "country" => "IN",
-    
-                    ],
-    
-                "email" => "demo@gmail.com",
-    
-                "name" => "Hardik Savani",
-    
-                "source" => $request->stripeToken
-    
-             ));
-    
-      
-    
-        Stripe\Charge::create ([
-    
-                "amount" => 100 * 100,
-    
-                "currency" => "usd",
-    
-                "customer" => $customer->id,
-    
-                "description" => "Test payment from itsolutionstuff.com.",
-    
-                "shipping" => [
-    
-                  "name" => "Jenny Rosen",
-    
-                  "address" => [
-    
-                    "line1" => "510 Townsend St",
-    
-                    "postal_code" => "98140",
-    
-                    "city" => "San Francisco",
-    
-                    "state" => "CA",
-    
-                    "country" => "US",
-    
-                  ],
-    
-                ]
-    
-        ]); 
-    
-        Session::flash('success', 'Payment successful!');
-    
-        return back();
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    // Retrieve the booking details from the session
+    $bookingNo = $request->session()->get('bookings.booking_no');
+    $totalPay = $request->session()->get('bookings.total_pay');
+
+    // Stripe payment integration
+    $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+    // try {
+        // Create a payment intent
+        $paymentIntent = $stripe->paymentIntents->create([
+            'amount' => $totalPay * 100, // Stripe requires the amount in cents
+            'currency' => 'MYR',
+            'payment_method' => 'pm_card_visa',
+        ]);
+
+        // Create a charge
+        $charge = $stripe->charges->create([
+            'source' => 'tok_visa',
+            'currency' => 'MYR',
+            'amount' => $totalPay * 100, // Stripe requires the amount in cents
+            'description' => $bookingNo,
+        ]);
+
+        DB::table('bookings')->where('booking_no', $bookingNo)->update([
+            'booking_status' => "Paid",
+        ]);
+
+        // Redirect to success page
+        return redirect()->route('bookings.success');
+
+    }
+
     public function success()
     {
-        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
+        return view('bookings.payment_success');
     }
 
     public function updateStatus(Request $request, $booking_id)
@@ -258,5 +214,4 @@ class BookingController extends Controller
 
 }
 
-    
 
